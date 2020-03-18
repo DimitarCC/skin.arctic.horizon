@@ -102,6 +102,8 @@
         </include>
         <include>Topbar_Right</include>
         <include>Object_NowPlaying</include>
+        <include>Viewtype_Options</include>
+        <include>Object_PlotOverlay</include>
     </include>
 
     <include name="Viewtype_BackPanel">
@@ -150,15 +152,25 @@
                 <control type="image">
                     <left>16</left>
                     <width>128</width>
-                    <bordersize>8</bordersize>
-                    <texture colordiffuse="$VAR[ColorHighlight]">special://skin/extras/icons/kodi.png</texture>
+                    <bordersize>20</bordersize>
+                    <visible>!Skin.HasSetting(ProfilePicture)</visible>
+                    <texture colordiffuse="$VAR[ColorHighlight]">$VAR[Image_SkinLogo]</texture>
                 </control>
-                <!-- <control type="image">
-                    <left>16</left>
-                    <width>128</width>
-                    <bordersize>32</bordersize>
-                    <texture diffuse="diffuse/circle.png">$INFO[System.ProfileThumb]</texture>
-                </control> -->
+                <control type="group">
+                    <visible>Skin.HasSetting(ProfilePicture)</visible>
+                    <control type="image">
+                        <left>16</left>
+                        <width>128</width>
+                        <bordersize>35</bordersize>
+                        <texture colordiffuse="dialog_fg_70">diffuse/circle.png</texture>
+                    </control>
+                    <control type="image">
+                        <left>16</left>
+                        <width>128</width>
+                        <bordersize>38</bordersize>
+                        <texture diffuse="diffuse/circle.png">$INFO[System.ProfileThumb]</texture>
+                    </control>
+                </control>
                 <control type="label">
                     <top>3</top>
                     <left>140</left>
@@ -766,6 +778,7 @@
                 <include condition="$PARAM[selectbox]" content="View_List_Selectbox">
                     <param name="id" value="$PARAM[id]" />
                 </include>
+                
                 <control type="group">
                     <include>Defs_Pad</include>
                     <!-- Textlabel -->
@@ -1022,6 +1035,7 @@
                             <param name="label" value="Yesterday" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=-1&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Today">
@@ -1030,6 +1044,7 @@
                             <param name="label" value="Today" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=0&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Tomorrow">
@@ -1038,6 +1053,7 @@
                             <param name="label" value="Tomorrow" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=1&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day3">
@@ -1046,6 +1062,7 @@
                             <param name="label" value="$INFO[Container(5003).ListItem.Property(widget)]" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=2&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day4">
@@ -1054,6 +1071,7 @@
                             <param name="label" value="$INFO[Container(5004).ListItem.Property(widget)]" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=3&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day5">
@@ -1062,6 +1080,7 @@
                             <param name="label" value="$INFO[Container(5005).ListItem.Property(widget)]" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=4&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day6">
@@ -1070,6 +1089,7 @@
                             <param name="label" value="$INFO[Container(5006).ListItem.Property(widget)]" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=5&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day7">
@@ -1078,6 +1098,7 @@
                             <param name="label" value="$INFO[Container(5007).ListItem.Property(widget)]" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=6&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day8">
@@ -1086,6 +1107,7 @@
                             <param name="label" value="$INFO[Container(5008).ListItem.Property(widget)]" />
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
+                            <movement>$PARAM[movement]</movement>
                             <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=7&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                     </include>

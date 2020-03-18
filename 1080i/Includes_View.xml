@@ -538,7 +538,7 @@
                         <texture colordiffuse="$VAR[ColorHighlight3]" border="10">common/box-gradient.png</texture>
                     </control>
                 </control>
-                
+                <nested />
             </control>
         </definition>
     </include>
