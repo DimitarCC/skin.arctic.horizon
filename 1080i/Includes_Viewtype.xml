@@ -14,8 +14,8 @@
                         <include content="View_Info_Grouplist">
                             <param name="plotheight" value="auto" />
                             <param name="container" value="Container." />
-                            <top>-15</top>
-                            <height>285</height>
+                            <top>-45</top>
+                            <height>310</height>
                             <visible>!Control.HasFocus(503)</visible>
                             <visible>![Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(520) | Control.IsVisible(56)]</visible>
                             <include>Viewtype_Info_Right</include>
@@ -24,8 +24,8 @@
                             <param name="plotheight" value="auto" />
                             <param name="container" value="Container." />
                             <param name="visible-details" value="false" />
-                            <top>-15</top>
-                            <height>285</height>
+                            <top>-45</top>
+                            <height>310</height>
                             <visible>[Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(520) | Control.IsVisible(56)]</visible>
                             <include>Viewtype_Info_Right</include>
                         </include>

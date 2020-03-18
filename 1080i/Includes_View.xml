@@ -111,6 +111,7 @@
                         <textcolor>main_fg_100</textcolor>
                         <font>font_tiny_bold</font>
                         <height>24</height>
+                        <visible>!String.Contains(Container($PARAM[id]).FolderPath,/sets/)</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                     </control>
@@ -123,10 +124,21 @@
                         <textcolor>main_fg_30</textcolor>
                         <font>font_tiny_bold</font>
                         <height>24</height>
+                        <visible>!String.Contains(Container($PARAM[id]).FolderPath,/sets/)</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
                         <visible>![Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])]</visible>
                     </control>
                     <control type="label">
+                        <top>17</top>
+                        <width>auto</width>
+                        <label>$INFO[Container($PARAM[id]).ListItem.Set]</label>
+                        <aligny>center</aligny>
+                        <textcolor>main_fg_100</textcolor>
+                        <font>font_tiny</font>
+                        <height>24</height>
+                        <visible>String.Contains(Container($PARAM[id]).FolderPath,/sets/)</visible>
+                    </control>
+                     <control type="label">
                         <top>17</top>
                         <width>auto</width>
                         <label>|</label>
@@ -138,7 +150,7 @@
                         <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
                         <visible>$PARAM[showtitle]</visible>
-                    </control>
+                      </control>
                     <control type="label">
                         <top>17</top>
                         <width>auto</width>
