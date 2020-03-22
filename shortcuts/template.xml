@@ -85,8 +85,7 @@
                         <param name="plotheight" value="200" />
                         <param name="titleheight" value="60" />
                         <param name="id" value="$PYTHON[30001 + int(mainmenuid) * 100]" />
-                        <param name="group1-id" value="$PYTHON[30097 + int(mainmenuid) * 100]" />
-                        <param name="group2-id" value="$PYTHON[30096 + int(mainmenuid) * 100]" />
+                        <param name="groupid" value="$PYTHON[30097 + int(mainmenuid) * 100]" />
                         <top>widgets_label_top</top>
                         <height>item_widget_details_height</height>
                         <visible>Integer.IsEqual(Container($PYTHON[50000 + int(mainmenuid) * 100]).NumItems,1)</visible>
@@ -226,11 +225,12 @@
                     <param name="visible" value="true" />
                     <param name="viewtype-include" value="$SKINSHORTCUTS[widgetInclude]" />
                     <param name="widget-type" value="widgets" />
+                    <param name="issubmenu" value="$SKINSHORTCUTS[widgetSubmenu]" />
                     <onback>SetFocus($PYTHON[int(mainmenuid)]3101)</onback>
                     <onback>301</onback>
                     <onfocus>SetProperty(TMDbHelper.WidgetContainer,$NUMBER[$PYTHON[30000 + int(mainmenuid) * 100 + int(id)]],Home)</onfocus>
                     <include content="Defs_AutoScroll">
-                        <param name="condition" value="[!ControlGroup(3000).HasFocus() + System.IdleTime(1) + !Skin.HasSetting(DisableAutoScrollWidgets) + Integer.IsEqual(Container(3000).NumItems,1)] | [$PYTHON['true' if widgetAspect in 'Banner' else 'false'] + !Control.HasFocus($PYTHON[30000 + int(mainmenuid) * 100 + int(id)])]" />
+                        <param name="condition" value="[!ControlGroup($PYTHON[50000 + int(mainmenuid) * 100]).HasFocus() + System.IdleTime(1) + !Skin.HasSetting(DisableAutoScrollWidgets) + Integer.IsEqual(Container($PYTHON[50000 + int(mainmenuid) * 100]).NumItems,1)] | [$PYTHON['true' if widgetAspect in 'Banner' else 'false'] + !Control.HasFocus($PYTHON[30000 + int(mainmenuid) * 100 + int(id)]) + !Skin.HasSetting(DisableAutoScrollWidgets)]" />
                     </include>
                     <movement>$SKINSHORTCUTS[widgetMovement]</movement>
                     <content><include condition="$SKINSHORTCUTS[widgetSubmenu]">skinshortcuts-submenu</include></content>
@@ -365,14 +365,20 @@
                 <include content="Object_Info_Button">
                     <param name="id" value="$PYTHON[70000 + int(mainmenuid) * 100 + int(id)]" />
                     <param name="groupid" value="$PYTHON[80000 + int(mainmenuid) * 100 + int(id)]" />
-                    <param name="label" value="$SKINSHORTCUTS[label]" />
-                    <param name="icon" value="$SKINSHORTCUTS[icon]" />
+                    <param name="label" value="$INFO[Container(302).ListItemAbsolute($PYTHON[int(id) - 1]).Label]" />
+                    <param name="icon" value="$INFO[Container(302).ListItemAbsolute($PYTHON[int(id) - 1]).Icon]" />
                     <param name="ondown" value="5610" />
-                    <param name="visible" value="String.IsEqual(Container(301).ListItem.Property(submenuVisibility),num-$SKINSHORTCUTS[submenuVisibility]) | String.IsEqual(Container(301).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])" />
-                    <onfocus>SetProperty(SubMenu.ID,$NUMBER[$SKINSHORTCUTS[id]],Home)</onfocus>
-                    <onfocus>SetProperty(SubMenu.widgetPath,$SKINSHORTCUTS[widgetPath],Home)</onfocus>
-                    <onfocus>SetProperty(SubMenu.widgetName,$LOCALIZE[$SKINSHORTCUTS[widgetName]],Home)</onfocus>
-                    <onclick>$SKINSHORTCUTS[onclick]</onclick>
+                    <param name="controltype" value="togglebutton" />
+                    <param name="visible" value="[String.IsEqual(Container(301).ListItem.Property(submenuVisibility),num-$SKINSHORTCUTS[submenuVisibility]) | String.IsEqual(Container(301).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])] + !String.IsEmpty(Container(302).ListItemAbsolute($PYTHON[int(id) - 1]).Label)" />
+                    <param name="focused" value="String.IsEqual(Container(302).ListItemAbsolute($PYTHON[int(id) - 1]).Label,Container(302).ListItem.Label) + Control.HasFocus(302)" />
+                    <onfocus>SetFocus(302,$PYTHON[int(id) - 1],absolute)</onfocus>
+                    <onclick>SetFocus(302)</onclick>
+                    <onclick>Action(Select)</onclick>
+                    <onclick>SetFocus($PYTHON[70000 + int(mainmenuid) * 100 + int(id)])</onclick>
+                    <alttexturenofocus border="0,50,50,50" flipx="true" colordiffuse="Selected">common/button-view-fo.png</alttexturenofocus>
+                    <alttexturefocus border="0,50,50,50" flipx="true" colordiffuse="Selected">common/button-view-fo.png</alttexturefocus>
+                    <altlabel>[COLOR=panel_bg]$INFO[Container(302).ListItemAbsolute($PYTHON[int(id) - 1]).Label,,][/COLOR][COLOR=00ffffff]------[/COLOR]</altlabel>
+                    <usealttexture>String.IsEqual(Container(302).ListItemAbsolute($PYTHON[int(id) - 1]).Label,Container(302).ListItem.Label) + Control.HasFocus(302)</usealttexture>
                 </include>
             </controls>
         </items>
@@ -435,6 +441,10 @@
             <property name="widgetPath" tag="property" attribute="name|list" value="DefaultSearch-SpotifySongs">plugin://plugin.audio.spotify/?action=search_albums&amp;songid=</property>
             <property name="widgetPath" tag="property" attribute="name|list" value="DefaultSearch-SpotifyPlaylists">plugin://plugin.audio.spotify/?action=search_songs&amp;playlistid=</property>
             <property name="widgetPath" tag="property" attribute="name|list" value="DefaultSearch-SpotifyPlaylists">plugin://plugin.audio.spotify/?action=search_playlists&amp;playlistid=</property>
+            
+            <property name="widgetPath" tag="property" attribute="name|list" value="DefaultSearch-TMDBMovies">plugin://plugin.video.themoviedb.helper?info=search&amp;type=movie&amp;query=</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="DefaultSearch-TMDBShows">plugin://plugin.video.themoviedb.helper?info=search&amp;type=tv&amp;query=</property>
+            <property name="widgetPath" tag="property" attribute="name|list" value="DefaultSearch-TMDBPeople">plugin://plugin.video.themoviedb.helper?info=search&amp;type=person&amp;query=</property>
             <property name="widgetPath" tag="property" attribute="name|list"/>
 
             <property name="widgetLimit" tag="property" attribute="name|widgetLimit" />
@@ -580,7 +590,8 @@
         <property name="id">50</property>
         <property name="submenuVisibility" tag="property" attribute="name|submenuVisibility"/>
         <controls>
-            <onright condition="String.IsEqual(Container(301).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + !Integer.IsEqual(Container(3700).NumItems,0)">SetFocus($PYTHON[50000 + int(id) * 100])</onright>
+            <onright condition="String.IsEqual(Container(301).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + !Integer.IsEqual(Container(3700).NumItems,0) + String.IsEmpty(Window(Home).Property(CurrentWidget))">SetFocus($PYTHON[50000 + int(id) * 100])</onright>
+            <onright condition="String.IsEqual(Container(301).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility]) + !Integer.IsEqual(Container(3700).NumItems,0) + !String.IsEmpty(Window(Home).Property(CurrentWidget))">SetFocus($INFO[Window(Home).Property(CurrentWidget)],0,absolute)</onright>
             <onright condition="Integer.IsEqual(Container(3700).NumItems,0)">SetFocus(3001)</onright>
         </controls>
     </other>

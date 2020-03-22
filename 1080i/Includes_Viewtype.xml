@@ -12,7 +12,7 @@
                     <control type="group" description="Top Half">
                         <visible>!Integer.IsEqual(Container.NumItems,0)</visible>
                         <include content="View_Info_Grouplist">
-                            <param name="plotheight" value="auto" />
+                            <param name="plotheight" value="80" />
                             <param name="container" value="Container." />
                             <top>-45</top>
                             <height>310</height>
@@ -351,6 +351,7 @@
                             <param name="textbox-visible" value="$PARAM[textbox-visible]" />
                             <param name="aspectratio" value="$PARAM[aspectratio]" />
                             <param name="textonly" value="$PARAM[textonly]" />
+                            <param name="textpanel" value="$PARAM[textpanel]" />
                         </include>
                     </control>
                 </itemlayout>
@@ -372,6 +373,7 @@
                             <param name="textbox-visible" value="$PARAM[textbox-visible]" />
                             <param name="aspectratio" value="$PARAM[aspectratio]" />
                             <param name="textonly" value="$PARAM[textonly]" />
+                            <param name="textpanel" value="$PARAM[textpanel]" />
                         </include>
                     </control>
                 </focusedlayout>
@@ -463,11 +465,149 @@
         </definition>
     </include>
 
+    <include name="Viewtype_LittleBanner_Itemlayout">
+        <param name="selectbox" default="false" />
+        <param name="focusbounce" default="true" />
+        <definition>
+            <include>Object_PosterBack</include>
+            <control type="group">
+                <include>Defs_Pad</include>
+
+                <!-- Image -->
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/01.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[1])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/02.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[2])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/03.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[3])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/01.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[4])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/02.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[5])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/03.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[6])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/01.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[7])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/02.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[8])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/03.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[9])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="special://skin/extras/backgrounds/blur/01.png" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="visible" value="String.EndsWith(ListItem.DBID,$NUMBER[0])" />
+                    <colordiffuse>55ffffff</colordiffuse>
+                </include>
+                <include content="Object_Poster">
+                    <param name="icon" value="$PARAM[icon]" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
+                    <colordiffuse>19ffffff</colordiffuse>
+                </include>
+                <!-- <control type="image">
+                    <aspectratio align="left">keep</aspectratio>
+                    <bordersize>90</bordersize>
+                    <height>350</height>
+                    <texture background="true">$VAR[Image_ClearLogo]</texture>
+                    <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
+                </control> -->
+                <control type="image">
+                    <aspectratio align="right" aligny="bottom" scalediffuse="false">keep</aspectratio>
+                    <bordersize>45</bordersize>
+                    <top>80</top>
+                    <left>-30</left>
+                    <right>-30</right>
+                    <bottom>-30</bottom>
+                    <texture background="true" diffuse="$PARAM[diffuse]">$VAR[Image_ClearArt_Widget]</texture>
+                    <visible>!String.IsEmpty(ListItem.Art(clearart)) | !String.IsEmpty(ListItem.Art(tvshowclearart))</visible>
+                </control>
+                <control type="image">
+                    <aspectratio align="right" aligny="bottom" scalediffuse="false">keep</aspectratio>
+                    <bordersize>60</bordersize>
+                    <width>50%</width>
+                    <right>0</right>
+                    <texture background="true" diffuse="$PARAM[diffuse]">$VAR[Image_ClearArt_Widget]</texture>
+                    <visible>String.IsEmpty(ListItem.Art(clearart)) + String.IsEmpty(ListItem.Art(tvshowclearart))</visible>
+                </control>
+
+                <control type="label">
+                    <top>50</top>
+                    <left>65</left>
+                    <aligny>top</aligny>
+                    <textcolor>panel_fg_100</textcolor>
+                    <font>font_title_small</font>
+                    <label>$INFO[ListItem.Label]</label>
+                </control>
+                <control type="label">
+                    <top>95</top>
+                    <left>65</left>
+                    <aligny>top</aligny>
+                    <textcolor>$VAR[ColorHighlight]</textcolor>
+                    <font>font_tiny</font>
+                    <label>$INFO[ListItem.Year,[COLOR=panel_fg_100],[/COLOR]]$INFO[ListItem.MPAA, | [COLOR=panel_fg_100],[/COLOR]]</label>
+                </control>
+                <control type="textbox">
+                    <top>160</top>
+                    <left>65</left>
+                    <height>140</height>
+                    <right>50%</right>
+                    <aligny>top</aligny>
+                    <textcolor>panel_fg_70</textcolor>
+                    <font>font_plotbox_small</font>
+                    <label>$INFO[ListItem.Plot]</label>
+                    <autoscroll>Skin.HasSetting(EnablePlotAutoScroll)</autoscroll>
+                </control>
+
+                <!-- Watched Overlay and Selectbox -->
+                <include>View_WatchedOverlay</include>
+                <include condition="$PARAM[selectbox]" content="View_Selectbox">
+                    <param name="focusbounce" value="$PARAM[focusbounce]" />
+                    <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
+                </include>
+            </control>
+        </definition>
+    </include>
+
     <!-- Small Landscape -->
     <include name="Viewtype_Landscape">
         <param name="icon" default="$VAR[Image_Landscape]" />
         <definition>
-            <include content="Viewtype_Poster">
+            <include content="Viewtype_Poster" condition="!Skin.HasSetting(DisableTextPanel)">
                 <param name="control-type" value="$PARAM[control-type]" />
                 <param name="orientation" value="$PARAM[orientation]" />
                 <param name="itemlayout" value="Viewtype_Landscape_Itemlayout" />
@@ -478,6 +618,21 @@
                 <param name="icon" value="$PARAM[icon]" />
                 <param name="diffuse" value="diffuse/landscape-std.png" />
                 <param name="height" value="$PARAM[height]" />
+                <param name="textpanel" value="true" />
+                <nested />
+            </include>
+            <include content="Viewtype_Poster" condition="Skin.HasSetting(DisableTextPanel)">
+                <param name="control-type" value="$PARAM[control-type]" />
+                <param name="orientation" value="$PARAM[orientation]" />
+                <param name="itemlayout" value="Viewtype_Landscape_Itemlayout" />
+                <param name="itemlayout-width" value="item_landscape_width" />
+                <param name="itemlayout-height" value="$PARAM[itemlayout-height]" />
+                <param name="movement" value="3" />
+                <param name="id" value="$PARAM[id]" />
+                <param name="icon" value="$PARAM[icon]" />
+                <param name="diffuse" value="diffuse/landscape-std-np.png" />
+                <param name="height" value="$PARAM[height]" />
+                <param name="textpanel" value="false" />
                 <nested />
             </include>
         </definition>
@@ -491,13 +646,17 @@
         <param name="textbox-height" default="89" />
         <param name="textbox-visible" default="true" />
         <param name="label-include" default="Viewtype_Landscape_Label" />
+        <param name="textpanel" default="true" />
         <definition>
-            <include>Object_PosterBack</include>
+            <include condition="$PARAM[textpanel]">Object_PosterBack</include>
             <control type="group">
                 <include>Defs_Pad</include>
                 <!-- Image -->
                 <control type="group">
                     <bottom>$PARAM[textbox-height]</bottom>
+                    <include content="Object_PosterBack" condition="!$PARAM[textpanel]">
+                        <param name="pad" value="-5" />
+                    </include>
                     <include content="Object_Artwork">
                         <param name="id" value="$PARAM[id]" />
                         <param name="altid" value="$PARAM[altid]" />
@@ -506,11 +665,16 @@
                         <param name="icon" value="$PARAM[icon]" />
                         <param name="aspectratio" value="$PARAM[aspectratio]" />
                     </include>
+                    <include condition="!$PARAM[textpanel]">View_WatchedOverlay</include>
+                    <include condition="$PARAM[selectbox] + !$PARAM[textpanel]" content="View_Selectbox">
+                        <param name="focusbounce" value="true" />
+                        <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
+                    </include>
                 </control>
                 
                 <!-- Watched Overlay and Selectbox -->
-                <include>View_WatchedOverlay</include>
-                <include condition="$PARAM[selectbox]" content="View_Selectbox">
+                <include condition="$PARAM[textpanel]">View_WatchedOverlay</include>
+                <include condition="$PARAM[selectbox] + $PARAM[textpanel]" content="View_Selectbox">
                     <param name="focusbounce" value="true" />
                     <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                     <include content="Viewtype_Landscape_Bottom" condition="!$PARAM[textbox-visible]">
@@ -535,57 +699,82 @@
                         <visible>$PARAM[textbox-visible]</visible>
                     </control>
                 </include>
-                <!-- Textlabel -->
+
+                <!-- Textlabels for Panel -->
                 <control type="group">
                     <height>$PARAM[textbox-height]</height>
                     <visible>$PARAM[textbox-visible]</visible>
                     <bottom>0</bottom>
-                    <include content="$PARAM[label-include]" description="Unfocused">
+                    <include content="$PARAM[label-include]" description="Unfocused" condition="$PARAM[textpanel]">
                         <param name="visible" value="!Control.HasFocus($PARAM[id]) | !$PARAM[selectbox]" />
                         <param name="textcolor_100" value="panel_fg_30" />
                         <param name="textcolor_70" value="panel_fg_30" />
                     </include>
-                    <include content="$PARAM[label-include]" description="Focused" condition="Skin.HasSetting(EnableMonochromeHighlight)">
+                    <include content="$PARAM[label-include]" description="Focused" condition="Skin.HasSetting(EnableMonochromeHighlight) + $PARAM[textpanel]">
                         <param name="visible" value="Control.HasFocus($PARAM[id]) + $PARAM[selectbox]" />
                         <param name="textcolor_100" value="panel_bg" />
                         <param name="textcolor_70" value="panel_bg" />
                     </include>
-                    <include content="$PARAM[label-include]" description="Focused" condition="!Skin.HasSetting(EnableMonochromeHighlight)">
+                    <include content="$PARAM[label-include]" description="Focused" condition="!Skin.HasSetting(EnableMonochromeHighlight) + $PARAM[textpanel]">
                         <param name="visible" value="Control.HasFocus($PARAM[id]) + $PARAM[selectbox]" />
                         <param name="textcolor_100" value="panel_fg_100" />
                         <param name="textcolor_70" value="panel_fg_70" />
                     </include>
                 </control>
+
+                <!-- Textlabels for No Panel -->
+                <control type="group">
+                    <height>$PARAM[textbox-height]</height>
+                    <visible>$PARAM[textbox-visible]</visible>
+                    <bottom>-10</bottom>
+                    <include content="$PARAM[label-include]" description="Unfocused" condition="!$PARAM[textpanel]">
+                        <param name="visible" value="!Control.HasFocus($PARAM[id]) | !$PARAM[selectbox]" />
+                        <param name="textcolor_100" value="main_fg_30" />
+                        <param name="textcolor_70" value="main_fg_30" />
+                        <param name="align" value="left" />
+                        <param name="pad" value="15" />
+                    </include>
+                    <include content="$PARAM[label-include]" description="Focused" condition="!$PARAM[textpanel]">
+                        <param name="visible" value="Control.HasFocus($PARAM[id]) + $PARAM[selectbox]" />
+                        <param name="textcolor_100" value="main_fg_100" />
+                        <param name="textcolor_70" value="main_fg_70" />
+                        <param name="align" value="left" />
+                        <param name="pad" value="15" />
+                    </include>
+                </control>
             </control>
         </definition>
     </include>
+
     <include name="Viewtype_Landscape_Label">
         <param name="textcolor_100" default="panel_fg_100" />
         <param name="textcolor_70" default="panel_fg_70" />
+        <param name="align" default="center" />
+        <param name="pad" default="35" />
         <definition>
             <control type="label">
-                <left>35</left>
-                <right>35</right>
+                <left>$PARAM[pad]</left>
+                <right>$PARAM[pad]</right>
                 <font>font_tiny_bold</font>
                 <selectedcolor>$PARAM[textcolor_100]</selectedcolor>
                 <textcolor>$PARAM[textcolor_100]</textcolor>
                 <bottom>60</bottom>
                 <top>0</top>
                 <aligny>center</aligny>
-                <align>center</align>
+                <align>$PARAM[align]</align>
                 <label>$VAR[Label_Landscape_Title]</label>
                 <visible>$PARAM[visible]</visible>
             </control>
             <control type="label">
-                <left>35</left>
-                <right>35</right>
+                <left>$PARAM[pad]</left>
+                <right>$PARAM[pad]</right>
                 <font>font_statusbar</font>
                 <selectedcolor>$PARAM[textcolor_70]</selectedcolor>
                 <textcolor>$PARAM[textcolor_70]</textcolor>
                 <bottom>30</bottom>
                 <top>30</top>
                 <aligny>center</aligny>
-                <align>center</align>
+                <align>$PARAM[align]</align>
                 <label fallback="19055">$VAR[Label_SmallLandscapeWidget_Sublabel]</label>
                 <visible>$PARAM[visible]</visible>
             </control>
@@ -657,11 +846,10 @@
         <param name="textbox-visible" default="true" />
         <param name="movement" default="5" />
         <definition>
-            <include content="Viewtype_Square">
+            <include content="Viewtype_Tags">
                 <param name="height" value="$PARAM[height]" />
                 <param name="control-type" value="panel" />
                 <param name="orientation" value="$PARAM[orientation]" />
-                <param name="itemlayout" value="View_Settings_Itemlayout" />
                 <param name="itemlayout-width" value="$PARAM[itemlayout-width]" />
                 <param name="itemlayout-height" value="$PARAM[itemlayout-height]" />
                 <param name="iconheight" value="item_settings_height" />
@@ -686,7 +874,7 @@
         <param name="textbox-visible" default="true" />
         <param name="movement" default="5" />
         <definition>
-            <include content="Viewtype_Poster">
+            <include content="Viewtype_Poster" condition="!Skin.HasSetting(DisableTextPanel)">
                 <param name="height" value="$PARAM[height]" />
                 <param name="control-type" value="$PARAM[control-type]" />
                 <param name="orientation" value="$PARAM[orientation]" />
@@ -701,6 +889,25 @@
                 <param name="textbox-height" value="$PARAM[textbox-height]" />
                 <param name="textbox-visible" value="$PARAM[textbox-visible]" />
                 <param name="aspectratio" value="$PARAM[aspectratio]" />
+                <param name="textpanel" value="true" />
+                <nested />
+            </include>
+            <include content="Viewtype_Poster" condition="Skin.HasSetting(DisableTextPanel)">
+                <param name="height" value="$PARAM[height]" />
+                <param name="control-type" value="$PARAM[control-type]" />
+                <param name="orientation" value="$PARAM[orientation]" />
+                <param name="itemlayout" value="Viewtype_Landscape_Itemlayout" />
+                <param name="itemlayout-width" value="$PARAM[itemlayout-width]" />
+                <param name="itemlayout-height" value="$PARAM[itemlayout-height]" />
+                <param name="label-include" value="$PARAM[label-include]" />
+                <param name="movement" value="$PARAM[movement]" />
+                <param name="id" value="$PARAM[id]" />
+                <param name="icon" value="$VAR[Image_Poster]" />
+                <param name="diffuse" value="diffuse/square-std-np.png" />
+                <param name="textbox-height" value="$PARAM[textbox-height]" />
+                <param name="textbox-visible" value="$PARAM[textbox-visible]" />
+                <param name="aspectratio" value="$PARAM[aspectratio]" />
+                <param name="textpanel" value="false" />
                 <nested />
             </include>
         </definition>

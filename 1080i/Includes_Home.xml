@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
+    <include name="Home_Submenu_Content"><content><include>skinshortcuts-submenu</include></content></include>
+
     <include name="Home_Movement_Widgets_UpDown">
-        <onup>ClearProperty(CurrentWidget)</onup>
-        <ondown>ClearProperty(CurrentWidget)</ondown>
         <onup>SetProperty(WidgetFocus,1)</onup>
         <ondown>SetProperty(WidgetFocus,1)</ondown>
         <include>Home_Movement_UpDown</include>
@@ -12,6 +12,8 @@
     </include>
 
     <include name="Home_Movement_UpDown">
+        <onup>ClearProperty(CurrentWidget)</onup>
+        <ondown>ClearProperty(CurrentWidget)</ondown>
         <onup>SetProperty(WidgetMovement,OnUp)</onup>
         <onup>Control.Move(301,-1)</onup>
         <ondown>SetProperty(WidgetMovement,OnDown)</ondown>
@@ -29,8 +31,6 @@
 
     <include name="Home_Multi">
         <include>Home_Menu_Vertical</include>
-
-        <!-- Main Group -->
         <include content="Viewtype_Main">
             <include>Animation_Home_Slide</include>
             <control type="group">
@@ -50,7 +50,7 @@
                             <left>-2000</left>
                             <include>Home_Movement_UpDown</include>
                             <onleft>ClearProperty(WidgetMovement)</onleft>
-                            <onleft>301</onleft>
+                            <onleft>SetFocus($INFO[Window(Home).Property(CurrentWidget)],9999,absolute)</onleft>
                             <include>skinshortcuts-template-onright</include>
                             <onright>ClearProperty(WidgetMovement)</onright>
                             <onclick>ClearProperty(WidgetMovement)</onclick>
@@ -135,8 +135,31 @@
                 </control>
                 <include>Topbar_Left</include>
             </control>
-                
-                
+
+            <!-- <control type="group">
+                <animation effect="fade" start="0" end="100" condition="Control.HasFocus(302)" reversible="false">Conditional</animation>
+                <animation effect="fade" start="100" end="0" condition="!Control.HasFocus(302)" reversible="false">Conditional</animation>
+                <include>Global_Overlay</include>
+            
+                <control type="group">
+                    <left>-1368</left>
+                    <top>40</top>
+                    <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(302).NumItems,8)">Conditional</animation>
+                    <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(302).NumItems,7)">Conditional</animation>
+                    <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(302).NumItems,6)">Conditional</animation>
+                    <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(302).NumItems,5)">Conditional</animation>
+                    <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(302).NumItems,4)">Conditional</animation>
+                    <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(302).NumItems,3)">Conditional</animation>
+                    <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(302).NumItems,2)">Conditional</animation>
+                    <include content="Dialog_PowerMenu">
+                        <param name="id" value="302" />
+                        <param name="header" value="Submenu" />
+                        <param name="items" value="Home_Submenu_Content" />
+                        <param name="visible" value="true" />
+                        <param name="icon-visible" value="true" />
+                    </include>
+                </control>
+            </control> -->
         </include>
 
         <!-- Clock -->
@@ -162,13 +185,19 @@
             <include content="Object_Info_Line">
                 <param name="container" value="Container($PARAM[id])." />
             </include>
-            <include content="Object_Info_Ratings">
+            <include content="Object_Info_Ratings" condition="!Skin.HasSetting(DisableFullscreenWidgetRatings)">
                 <param name="container" value="Container($PARAM[id])." />
             </include>
-            <include content="Object_Info_Plot">
+            <include content="Object_Info_Plot" condition="!Skin.HasSetting(DisableFullscreenWidgetRatings)">
                 <param name="maxheight" value="80" />
                 <param name="height" value="auto" />
                 <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Plot]" />
+            </include>
+            <include content="Object_Info_Plot" condition="Skin.HasSetting(DisableFullscreenWidgetRatings)">
+                <param name="maxheight" value="80" />
+                <param name="height" value="auto" />
+                <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Plot]" />
+                <top>10</top>
             </include>
         </control>
         <control type="image">
@@ -189,6 +218,7 @@
             <control type="list" id="$PARAM[id]">
                 <nested />
                 <orientation>horizontal</orientation>
+                <scrolltime tween="quadratic">400</scrolltime>
                 <itemlayout width="1920" height="1080">
                     <control type="image">
                         <texture background="true">$VAR[Image_Fanart]</texture>
@@ -200,6 +230,9 @@
                     </control>
                 </focusedlayout>
                 <content target="videos" sortby="random">$PARAM[content]</content>
+                <include content="Defs_AutoScroll">
+                    <param name="condition" value="!Control.HasFocus(3001) + System.IdleTime(1) + !Skin.HasSetting(DisableAutoScrollWidgets)" />
+                </include>
             </control>
             
             <include content="Home_Widget_Fullscreen_Info">
@@ -368,6 +401,7 @@
                         <param name="focusbutton" value="$PARAM[focusbutton]" />
                         <onfocus>ClearProperty(TMDbHelper.WidgetContainer,Home)</onfocus>
                         <onback>3000</onback>
+                        <onleft>SetFocus(302)</onleft>
                         <onfocus>ClearProperty(WidgetMovement)</onfocus>
                         <onfocus>ClearProperty(WidgetFocus)</onfocus>
                         <onfocus condition="String.IsEmpty(Window.Property(301Click))">SetFocus(3992)</onfocus>
@@ -385,31 +419,38 @@
         <definition>
             <control type="group" id="$PARAM[group1-id]">
                 <nested />
-                <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle)</visible>
-                <include content="View_Info_Grouplist">
-                    <param name="title" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle]" />
-                    <param name="container" value="Container($PARAM[id])." />
-                    <param name="plot" value="$INFO[Container($PARAM[id]).ListItem.Plot]" />
-                    <param name="ratings" value="false" />
-                    <param name="plotheight" value="$PARAM[plotheight]" />
+                <control type="grouplist">
                     <top>5</top>
                     <left>100</left>
                     <right>580</right>
-                </include>
-            </control>
-            <control type="group" id="$PARAM[group2-id]">
-                <nested />
-                <visible>String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle)</visible>
-                <include content="View_Info_Grouplist">
-                    <param name="title" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
-                    <param name="container" value="Container($PARAM[id])." />
-                    <param name="plot" value="$INFO[Container($PARAM[id]).ListItem.Plot]" />
-                    <param name="ratings" value="false" />
-                    <param name="plotheight" value="$PARAM[plotheight]" />
-                    <top>5</top>
-                    <left>100</left>
-                    <right>580</right>
-                </include>
+                    <orientation>vertical</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+                    <itemgap>0</itemgap>
+                    <include content="Object_Info_Title">
+                        <param name="label" value="$INFO[Container($PARAM[id]).ListItem.TvShowTitle]" />
+                        <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle)</visible>
+                    </include>
+                    <include content="Object_Info_Title">
+                        <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
+                        <visible>String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle)</visible>
+                    </include>
+                    <include content="Object_Info_Line">
+                        <param name="container" value="Container($PARAM[id])." />
+                    </include>
+                    <include content="Object_Info_Title">
+                        <param name="font" value="font_small_bold" />
+                        <param name="titleheight" value="10" />
+                        <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
+                        <top>30</top>
+                        <visible>String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)</visible>
+                    </include>
+                    <include content="Object_Info_Plot">
+                        <param name="maxheight" value="$PARAM[plotmaxheight]" />
+                        <param name="height" value="$PARAM[plotheight]" />
+                        <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Plot]$INFO[Container($PARAM[id]).ListItem.Property(Album_Description)]$INFO[Container($PARAM[id]).ListItem.Property(Artist_Description)]$INFO[Container($PARAM[id]).ListItem.AddonDescription]" />
+                    </include>
+                    <nested />
+                </control>
             </control>
         </definition>
     </include>

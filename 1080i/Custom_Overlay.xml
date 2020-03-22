@@ -102,6 +102,108 @@
             </control>
 
             <control type="grouplist">
+                <left>40</left>
+                <itemgap>79</itemgap>
+                <orientation>horizontal</orientation>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <width>1</width>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+            </control>
+
+            <control type="grouplist">
                 <top>200</top>
                 <itemgap>79</itemgap>
                 <control type="image">
@@ -151,6 +253,64 @@
                 <control type="image">
                     <height>1</height>
                     <texture colordiffuse="44ff0000">common/white.png</texture>
+                </control>
+            </control>
+
+            <control type="image">
+                <top>40</top>
+                <height>1</height>
+                <texture colordiffuse="22ff00ff">common/white.png</texture>
+            </control>
+            <control type="grouplist">
+                <top>160</top>
+                <itemgap>79</itemgap>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
+                </control>
+                <control type="image">
+                    <height>1</height>
+                    <texture colordiffuse="22ff00ff">common/white.png</texture>
                 </control>
             </control>
 
@@ -779,20 +939,6 @@
                     <visible>Window.IsVisible(1190)</visible>
                 </control>
 
-                <control type="label">
-                    <textcolor>FFFF0000</textcolor>
-                    <include>Defs_CustomOverlay_Label</include>
-                    <label>Custom_1191</label>
-                    <visible>Window.IsVisible(1191)</visible>
-                </control>
-
-                <control type="label">
-                    <textcolor>FFFF0000</textcolor>
-                    <include>Defs_CustomOverlay_Label</include>
-                    <label>Custom_1192</label>
-                    <visible>Window.IsVisible(1192)</visible>
-                </control>
-
             </control>
 
             <!-- Control label -->
@@ -855,6 +1001,7 @@
                     $INFO[Window(Home).Property(TMDbHelper.ListItem.Label),[COLOR=FFFF00FF]  SM.LABEL  [/COLOR],]$INFO[Window(Home).Property(TMDbHelper.ListItem.Title),[COLOR=FFFF00FF]  SM.TITLE  [/COLOR],]
                     $INFO[ListItem.Rating,[COLOR=FFFF00FF]  RATING  [/COLOR],]$INFO[ListItem.UserRating,[COLOR=FFFF00FF]  USER RATING  [/COLOR],]
                      $INFO[ListItem.Duration,[COLOR=FFFF00FF]  DURATION  [/COLOR],]
+                     $INFO[ListItem.FileNameAndPath,[COLOR=FFFF00FF]  FILEPATH  [/COLOR],]
                     $INFO[Window(Home).Property(TMDbHelper.IsUpdating),[COLOR=FFFF00FF]  SM.ISUPDATING  [/COLOR],]
                     $INFO[ListItem.VideoCodec,[COLOR=FFFF00FF]CODEC  [/COLOR],]$INFO[ListItem.VideoAspect,[COLOR=FFFF00FF]  ASPECT  [/COLOR],]$INFO[ListItem.VideoResolution,[COLOR=FFFF00FF]  RES  [/COLOR],]$INFO[ListItem.AudioCodec,[COLOR=FFFF00FF]  CODEC  [/COLOR],]$INFO[ListItem.AudioChannels,[COLOR=FFFF00FF]  CHANNELS  [/COLOR],]
                     $INFO[ListItem.Property(NumItems.TMDB.Cast),[COLOR=FFFF00FF]CASTIN  [/COLOR],]$INFO[ListItem.Property(NumItems.TMDB.Crew),[COLOR=FFFF00FF]  CREWIN  [/COLOR],]$INFO[ListItem.Property(NumItems.TMDB.Total),[COLOR=FFFF00FF]  TOTAL  [/COLOR],]

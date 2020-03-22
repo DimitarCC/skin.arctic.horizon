@@ -567,7 +567,7 @@ msgstr ""
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31113"
-msgid "Global widget"
+msgid "Fullscreen widget path"
 msgstr ""
 
 msgctxt "#31114"
@@ -1059,6 +1059,11 @@ msgctxt "#31214"
 msgid "Recently Added Episodes"
 msgstr ""
 
+#: /1080i/SkinSettings.xml
+msgctxt "#31215"
+msgid "Autoscroll plot"
+msgstr ""
+
 #: /shortcuts/overrides.xml
 msgctxt "#31216"
 msgid "In Progress Movies"
@@ -1074,13 +1079,58 @@ msgctxt "#31218"
 msgid "In Progress Episodes"
 msgstr ""
 
+#: /1080i/SkinSettings.xml
+msgctxt "#31219"
+msgid "Seconds"
+msgstr ""
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31220"
+msgid "Minute"
+msgstr ""
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31221"
+msgid "3 seconds"
+msgstr ""
+
 #: /shortcuts/overrides.xml
 msgctxt "#31222"
 msgid "Top Rated TV Shows"
 msgstr ""
 
+#: /1080i/SkinSettings.xml
+msgctxt "#31223"
+msgid "5 seconds"
+msgstr ""
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31224"
+msgid "1 Minute"
+msgstr ""
+
 msgctxt "#31225"
 msgid "Top Rated Movies"
+msgstr ""
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31226"
+msgid "Select OSD Timeout"
+msgstr ""
+
+#: /1080i/script-upnext-upnext.xml
+msgctxt "#31227"
+msgid "Up Next in"
+msgstr ""
+
+#: /1080i/script-upnext-stillwatching-simple.xml
+msgctxt "#31228"
+msgid "Continue Watching in"
+msgstr ""
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31229"
+msgid "Panels behind item text"
 msgstr ""
 
 #: /shortcuts/overrides.xml
