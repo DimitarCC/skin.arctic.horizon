@@ -1,4 +1,4 @@
-<addon id="skin.arctic.horizon.mod" name="Arctic Horizon Ex" provider-name="dimitarcc" version="0.1.34">
+<addon id="skin.arctic.horizon.mod" name="Arctic Horizon Ex" provider-name="dimitarcc" version="0.1.39">
     <requires>
         <import addon="xbmc.gui" version="5.14.0" />
         <import addon="script.skinshortcuts" version="0.4.0" />
