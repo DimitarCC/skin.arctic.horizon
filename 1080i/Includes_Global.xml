@@ -2,7 +2,7 @@
 <includes>
 
     <variable name="Global_BusyLoader">
-        <value>special://skin/extras/loader/waves/</value>
+        <value>loader/</value>
     </variable>    
 
     <include name="Global_Overlay">
@@ -33,6 +33,7 @@
     <include name="Global_Videowindow_Hidden">
         <control type="videowindow">
             <visible>Player.HasVideo</visible>
+            <visible>String.IsEmpty(Window(Home).Property(HasTrailer))</visible>
             <include>Dimensions_Fullscreen</include>
         </control>
     </include>
@@ -87,10 +88,29 @@
         <include content="Global_Background_Artwork">
             <control type="group">
                 <visible>!$EXP[Exp_GlobalBackground]</visible>
+                <visible>String.IsEmpty(Window(Home).Property(HasTrailer))</visible>
                 <include condition="Skin.HasSetting(global.showvideo)">Global_Videowindow</include>
                 <include condition="Skin.HasSetting(global.showvisualisation)">Global_Visualisation</include>
             </control>
         </include>
+    </include>
+
+    <include name="Global_Background_BusyLoader">
+        <control type="group">
+            <visible>Window.IsVisible(DialogBusy.xml)</visible>
+            <visible>!$EXP[Exp_InfoVisible]</visible>
+            <animation effect="fade" start="0" end="100" time="5000" tween="cubic" easing="inout" reversible="true">Visible</animation>
+            <animation effect="fade" start="100" end="0" time="1000" tween="cubic" easing="inout" reversible="true">Hidden</animation>
+            <animation effect="fade" start="100" end="0" time="1000" tween="cubic" easing="inout" reversible="false" condition="!Window.IsVisible(DialogBusy.xml)">Conditional</animation>
+            <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
+            <control type="multiimage">
+                <timeperimage>50</timeperimage>
+                <aspectratio align="center" aligny="center">stretch</aspectratio>
+                <fadetime>10</fadetime>
+                <imagepath>$VAR[Global_BusyLoader]</imagepath>
+                <randomize>false</randomize>
+            </control>
+        </control>
     </include>
 
     <include name="Global_Background_Artwork">
@@ -113,21 +133,7 @@
                 <visible>$EXP[Exp_GlobalBackground]</visible>
                 <animation effect="fade" start="100" end="0" time="2000" tween="cubic" easing="inout" condition="Window.IsVisible(DialogBusy.xml) + [!System.HasAddon(script.colorbox) | Skin.HasSetting(DisableBlur)]">Conditional</animation>
             </control>
-            <control type="group">
-                <visible>Window.IsVisible(DialogBusy.xml)</visible>
-                <visible>!$EXP[Exp_InfoVisible]</visible>
-                <animation effect="fade" start="0" end="100" time="5000" tween="cubic" easing="inout" reversible="true">Visible</animation>
-                <animation effect="fade" start="100" end="0" time="1000" tween="cubic" easing="inout" reversible="true">Hidden</animation>
-                <animation effect="fade" start="100" end="0" time="1000" tween="cubic" easing="inout" reversible="false" condition="!Window.IsVisible(DialogBusy.xml)">Conditional</animation>
-                <animation effect="fade" start="100" end="10" condition="true">Conditional</animation>
-                <control type="multiimage">
-                    <timeperimage>50</timeperimage>
-                    <aspectratio align="center" aligny="center">stretch</aspectratio>
-                    <fadetime>10</fadetime>
-                    <imagepath>$VAR[Global_BusyLoader]</imagepath>
-                    <randomize>false</randomize>
-                </control>
-            </control>
+            <include condition="!Skin.HasSetting(DisableBusyBackground)">Global_Background_BusyLoader</include>
             <nested />
             <control type="image">
                 <texture colordiffuse="$VAR[ColorHighlight4]" background="true">common/vignette-white.png</texture>
@@ -135,7 +141,12 @@
             </control>
             <control type="image">
                 <texture background="true">common/vignette-full.png</texture>
-                <visible>[!System.HasAddon(script.colorbox) | Skin.HasSetting(DisableBlur)]</visible>
+                <visible>[!System.HasAddon(script.colorbox) | Skin.HasSetting(DisableBlur)] | [Player.HasVideo + Skin.HasSetting(global.showvideo) + String.IsEmpty(Window(Home).Property(HasTrailer))]</visible>
+            </control>
+            <control type="image">
+                <texture colordiffuse="Background">common/bg.jpg</texture>
+                <animation effect="fade" end="50" condition="True">Conditional</animation>
+                <visible>System.HasAddon(script.colorbox) + !Skin.HasSetting(DisableBlur) + Player.HasVideo + Skin.HasSetting(global.showvideo) + String.IsEmpty(Window(Home).Property(HasTrailer))</visible>
             </control>
         </control>
     </include>

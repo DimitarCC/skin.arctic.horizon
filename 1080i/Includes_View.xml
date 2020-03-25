@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <include name="View_Bookmarks_Label">
-        <control type="label">
-            <left>15</left>
-            <right>15</right>
-            <font>font_statusbar</font>
-            <selectedcolor>panel_fg_100</selectedcolor>
-            <textcolor>panel_fg_100</textcolor>
-            <top>$PARAM[iconheight]</top>
-            <bottom>25</bottom>
-            <aligny>center</aligny>
-            <align>left</align>
-            <label>$INFO[ListItem.Label]</label>
-        </control>
-        <control type="label">
-            <left>15</left>
-            <right>15</right>
-            <font>font_statusbar</font>
-            <selectedcolor>panel_fg_100</selectedcolor>
-            <textcolor>panel_fg_100</textcolor>
-            <top>$PARAM[iconheight]</top>
-            <bottom>25</bottom>
-            <aligny>center</aligny>
-            <align>right</align>
-            <label>$INFO[ListItem.Label2]</label>
+    <include name="View_Hub_HiddenList">
+        <control type="list" id="302">
+            <top>-1000</top>
+            <left>-1000</left>
+            <width>1000</width>
+            <height>1</height>
+            <orientation>horizontal</orientation>
+            <ondown>5610</ondown>
+            <itemlayout width="1"/>
+            <focusedlayout width="1"/>
+            <include>Items_SubMenu</include>
         </control>
     </include>
 

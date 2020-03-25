@@ -35,16 +35,23 @@
         <control type="button" id="9608">
             <include>Defs_Hidden_Button</include>
             <onleft>300</onleft>
+            <onleft>ClearProperty(HasTrailer,Home)</onleft>
             <onleft condition="Player.HasVideo">Stop</onleft>
             <onright>300</onright>
+            <onright>ClearProperty(HasTrailer,Home)</onright>
             <onright condition="Player.HasVideo">Stop</onright>
             <onup>300</onup>
+            <onup>ClearProperty(HasTrailer,Home)</onup>
             <onup condition="Player.HasVideo">Stop</onup>
             <ondown>300</ondown>
+            <ondown>ClearProperty(HasTrailer,Home)</ondown>
             <ondown condition="Player.HasVideo">Stop</ondown>
             <onback>300</onback>
+            <onback>ClearProperty(HasTrailer,Home)</onback>
             <onback condition="Player.HasVideo">Stop</onback>
-            <onclick>Fullscreen</onclick>
+            <onclick>300</onclick>
+            <onclick condition="Player.HasVideo">Fullscreen</onclick>
+            <onclick>ClearProperty(HasTrailer,Home)</onclick>
         </control>
         <control type="group">
             <control type="group">
@@ -217,7 +224,7 @@
             <nested />
             <top>55</top>
             <left>100</left>
-            <right>800</right>
+            <right>100</right>
             <height>425</height>
         </control>
     </include>
@@ -244,7 +251,7 @@
             <itemgap>infowidgets_group_itemgap</itemgap>
             <top>-20</top>
             <left>-20</left>
-            <right>-800</right>
+            <right>-100</right>
             <usecontrolcoords>true</usecontrolcoords>
             <control type="group" id="5999"><height>0</height></control>
             <nested />
@@ -594,7 +601,7 @@
             <control type="group" id="$PARAM[id]">
                 <nested />
                 <top>infowidgets_item_top</top>
-                <right>700</right>
+                <right>0</right>
                 <height>item_widget_details_height</height>
                 <control type="grouplist">
                     <top>10</top>
@@ -712,6 +719,7 @@
                         <align>right</align>
                         <right>view_pad</right>
                         <height>32</height>
+                        <visible>!Skin.HasSetting(EnableMonochromeFlags)</visible>
                         <control type="label">
                             <font>font_statusbar</font>
                             <textcolor>main_fg_100</textcolor>
@@ -803,6 +811,127 @@
                             <height>32</height>
                             <aspectratio>keep</aspectratio>
                             <texture fallback="lang/eng.png">$INFO[ListItem.Property(SubtitleLanguage.5),lang/,.png]</texture>
+                            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.5))</visible>
+                        </control>
+                    </control>
+                    <control type="grouplist">
+                        <centertop>50%</centertop>
+                        <usecontrolcoords>true</usecontrolcoords>
+                        <itemgap>10</itemgap>
+                        <orientation>horizontal</orientation>
+                        <align>right</align>
+                        <right>view_pad</right>
+                        <height>32</height>
+                        <visible>Skin.HasSetting(EnableMonochromeFlags)</visible>
+                        <control type="image">
+                            <centertop>50%</centertop>
+                            <aspectratio>keep</aspectratio>
+                            <texture colordiffuse="main_fg_100">flags/language.png</texture>
+                            <width>32</width>
+                            <height>24</height>
+                            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.1))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(AudioLanguage.1)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.1))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(AudioLanguage.2)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.2))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(AudioLanguage.3)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.3))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(AudioLanguage.4)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.4))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(AudioLanguage.5)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.5))</visible>
+                        </control>
+                        <control type="group">
+                            <width>10</width>
+                            <visible>!String.IsEmpty(ListItem.Property(AudioLanguage.1))</visible>
+                            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.1))</visible>
+                        </control>
+                        <control type="image">
+                            <centertop>50%</centertop>
+                            <aspectratio>keep</aspectratio>
+                            <texture colordiffuse="main_fg_100">flags/subs.png</texture>
+                            <width>32</width>
+                            <height>24</height>
+                            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.1))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(SubtitleLanguage.1)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.1))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(SubtitleLanguage.2)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.2))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(SubtitleLanguage.3)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.3))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(SubtitleLanguage.4)][/UPPERCASE]</label>
+                            <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.4))</visible>
+                        </control>
+                        <control type="label">
+                            <font>font_statusbar</font>
+                            <textcolor>main_fg_100</textcolor>
+                            <aligny>center</aligny>
+                            <width>auto</width>
+                            <height>29</height>
+                            <label>[UPPERCASE]$INFO[ListItem.Property(SubtitleLanguage.5)][/UPPERCASE]</label>
                             <visible>!String.IsEmpty(ListItem.Property(SubtitleLanguage.5))</visible>
                         </control>
                     </control>

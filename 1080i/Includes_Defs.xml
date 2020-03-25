@@ -2,7 +2,7 @@
 <includes>
     <variable name="Defs_ScreensaverWidget">
         <value condition="!String.IsEmpty(Skin.String(screensaver.arctic.mirage.path))">$INFO[Skin.String(screensaver.arctic.mirage.path)]</value>
-        <value>$INFO[Skin.String(widgetPath)]</value>
+        <value>special://skin/extras/playlists/RandomMovies.xsp</value>
     </variable>
 
     <include name="Defs_Pad">
@@ -26,7 +26,7 @@
 
     <variable name="Defs_ColorMode_ColorDiffuse">
         <value condition="!Skin.HasSetting(EnableMonochromeFlags)">ffffffff</value>
-        <value>main_fg_30</value>
+        <value>main_fg_100</value>
     </variable>
 
     <variable name="Defs_ColorMode_Dir">
