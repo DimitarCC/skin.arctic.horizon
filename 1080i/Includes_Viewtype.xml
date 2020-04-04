@@ -2,6 +2,7 @@
 <includes>
     <include name="ViewIDs"><views>50,51,55,500,52,53,54,56</views></include>
     <include name="Viewtype_Info_Right"><right>700</right></include>
+    <include name="Viewtype_Info_Right_FixedHome"><right>560</right></include>
     <include name="Viewtypes">
         <include content="Viewtype_Main">
             <control type="group">
@@ -12,17 +13,15 @@
                     <control type="group" description="Top Half">
                         <visible>!Integer.IsEqual(Container.NumAllItems,0)</visible>
                         <include content="View_Info_Grouplist">
-                            <param name="plotheight" value="80" />
                             <param name="container" value="Container." />
                             <top>-45</top>
                             <height>310</height>
-                            <visible>!Control.HasFocus(503)</visible>
+                            <visible>!Control.HasFocus(530)</visible>
                             <visible>!Control.IsVisible(56)</visible>
                             <visible>![Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(520)]</visible>
                             <include>Viewtype_Info_Right</include>
                         </include>
                         <include content="View_Info_Grouplist">
-                            <param name="plotheight" value="auto" />
                             <param name="container" value="Container." />
                             <param name="visible-details" value="false" />
                             <top>-45</top>
@@ -124,39 +123,23 @@
         </control>
     </include>
 
-    <include name="Topbar_Left_Home">
-        <onleft>301</onleft>
-        <onup>301</onup>
-        <ondown>3999</ondown>
-        <onback>301</onback>
-        <visible>!Control.HasFocus(301)</visible>
-    </include>
-
-    <include name="Topbar_Left_Library">
-        
-        <ondown condition="Control.IsVisible(300)">300</ondown>
-        <ondown condition="!Control.IsVisible(300) + !Control.IsVisible(5610)">50</ondown>
-        <ondown condition="!Control.IsVisible(300) + Control.IsVisible(5610)">5610</ondown>
-        <onback>50</onback>
-    </include>
 
     <include name="Viewtype_KodiLogo">
         <param name="textcolor" default="dialog_fg_100" />
-        <param name="logohastext" default="true" />
         <definition>
             <control type="group">
                 <centertop>100</centertop>
                 <height>128</height>
                 <nested />
-                <control type="image">
+                <include content="Object_Control" condition="!Skin.HasSetting(ProfilePicture)">
+                    <param name="type" value="image" />
                     <left>16</left>
                     <width>128</width>
                     <bordersize>20</bordersize>
-                    <visible>!Skin.HasSetting(ProfilePicture)</visible>
                     <texture colordiffuse="$VAR[ColorHighlight]">$VAR[Image_SkinLogo]</texture>
-                </control>
-                <control type="group">
-                    <visible>Skin.HasSetting(ProfilePicture)</visible>
+                </include>
+                <include content="Object_Control" condition="Skin.HasSetting(ProfilePicture)">
+                    <param name="type" value="group" />
                     <control type="image">
                         <left>16</left>
                         <width>128</width>
@@ -169,18 +152,7 @@
                         <bordersize>38</bordersize>
                         <texture diffuse="diffuse/circle.png">$INFO[System.ProfileThumb]</texture>
                     </control>
-                </control>
-                <control type="label">
-                    <top>3</top>
-                    <left>140</left>
-                    <align>left</align>
-                    <aligny>center</aligny>
-                    <textcolor>$PARAM[textcolor]</textcolor>
-                    <font>font_kodi</font>
-                    <label>KODI</label>
-                    <animation effect="fade" end="90" condition="true">Conditional</animation>
-                    <visible>$PARAM[logohastext]</visible>
-                </control>
+                </include>
             </control>
         </definition>
     </include>
@@ -195,9 +167,7 @@
                     <aspectratio align="left">scale</aspectratio>
                     <texture colordiffuse="$PARAM[colordiffuse]">common/bg.jpg</texture>
                 </control>
-                <include content="Viewtype_KodiLogo">
-                    <param name="logohastext" value="$PARAM[logohastext]" />
-                </include>
+                <include>Viewtype_KodiLogo</include>
                 <nested />
             </control>
         </definition>
@@ -222,13 +192,21 @@
             <include>Animation_FadeInOut</include>
             <include>Global_Overlay</include>
         </control>
-        <include content="Dialog_PowerMenu">
-            <param name="id" value="9000" />
-            <param name="header" value="Options" />
-            <param name="items" value="Items_View" />
-            <param name="visible" value="Control.HasFocus(9000)" />
-            <param name="icon-visible" value="true" />
-        </include>
+        <control type="group">
+            <visible>Control.HasFocus(9000)</visible>
+            <include>Animation_FadeIn_SlideUp</include>
+            <include content="Dialog_PowerMenu">
+                <param name="id" value="9000" />
+                <param name="header" value="Options" />
+                <param name="items" value="Items_View" />
+                <param name="visible" value="Control.HasFocus(9000)" />
+                <param name="icon-visible" value="true" />
+                <param name="onleft" value="50" />
+                <param name="onright" value="50" />
+                <param name="onback" value="50" />
+                <param name="listanimation" value="false" />
+            </include>
+        </control>
     </include>
 
     <include name="Viewtype_SideMenu">
@@ -272,7 +250,6 @@
         <oninfo condition="Container.Content(actors) | Container.Content(directors)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container.ListItem.Label],type=person,call_auto=1190)</oninfo>
         <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
         <ondown>60</ondown>
-        <!-- <ondown>ActivateWindow(1142)</ondown> -->
         <pagecontrol>60</pagecontrol>
     </include>
 
@@ -286,7 +263,6 @@
             <control type="group">
                 <width>$PARAM[itemlayout-width]</width>
                 <height>$PARAM[itemlayout-height]</height>
-                <animation effect="fade" start="100" end="0" condition="String.IsEmpty($PARAM[listitem].Label)">Conditional</animation>
                 <include>Object_PosterBack</include>
                 <control type="group">
                     <include>View_Pad</include>
@@ -294,8 +270,7 @@
                         <param name="id" value="$PARAM[id]" />
                         <param name="selectbox" value="false" />
                         <param name="diffuse" value="$PARAM[diffuse]" />
-                        <param name="icon" value="$INFO[$PARAM[listitem].Icon]" />
-                        <param name="listitem" value="$PARAM[listitem]" />
+                        <param name="icon" value="$INFO[ListItem.Icon]" />
                     </include>
                     <include condition="$PARAM[selectbox]" content="View_Selectbox">
                         <visible>Control.HasFocus($PARAM[id])</visible>
@@ -347,7 +322,6 @@
                             <param name="textbox-height" value="$PARAM[textbox-height]" />
                             <param name="textbox-visible" value="$PARAM[textbox-visible]" />
                             <param name="aspectratio" value="$PARAM[aspectratio]" />
-                            <param name="textonly" value="$PARAM[textonly]" />
                             <param name="textpanel" value="$PARAM[textpanel]" />
                         </include>
                     </control>
@@ -369,7 +343,6 @@
                             <param name="textbox-height" value="$PARAM[textbox-height]" />
                             <param name="textbox-visible" value="$PARAM[textbox-visible]" />
                             <param name="aspectratio" value="$PARAM[aspectratio]" />
-                            <param name="textonly" value="$PARAM[textonly]" />
                             <param name="textpanel" value="$PARAM[textpanel]" />
                         </include>
                     </control>
@@ -405,16 +378,16 @@
                     <param name="selectbox" value="$PARAM[selectbox]" />
                     <param name="diffuse" value="$PARAM[diffuse]" />
                     <param name="icon" value="$PARAM[icon]" />
-                    <param name="textonly" value="$PARAM[textonly]" />
                 </include>
 
                 <include content="View_Cast_Label">
                     <param name="label2" value="$PARAM[label2]" />
                     <param name="visible" value="$PARAM[castlabel]" />
+                    <param name="diffuse" value="$PARAM[diffuse]" />
                 </include>
                 
                 <!-- Watched Overlay and Selectbox -->
-                <include>View_WatchedOverlay</include>
+                <include condition="!Skin.HasSetting(DisableWatchedOverlay)">View_WatchedOverlay</include>
                 <include condition="$PARAM[selectbox]" content="View_Selectbox">
                     <param name="focusbounce" value="$PARAM[focusbounce]" />
                     <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -465,7 +438,7 @@
                 </control>
 
                 <!-- Watched Overlay and Selectbox -->
-                <include>View_WatchedOverlay</include>
+                <include condition="!Skin.HasSetting(DisableWatchedOverlay)">View_WatchedOverlay</include>
                 <include condition="$PARAM[selectbox]" content="View_Selectbox">
                     <param name="focusbounce" value="$PARAM[focusbounce]" />
                     <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -599,11 +572,10 @@
                     <textcolor>panel_fg_70</textcolor>
                     <font>font_plotbox_small</font>
                     <label>$INFO[ListItem.Plot]</label>
-                    <autoscroll>Skin.HasSetting(EnablePlotAutoScroll)</autoscroll>
                 </control>
 
                 <!-- Watched Overlay and Selectbox -->
-                <include>View_WatchedOverlay</include>
+                <include condition="!Skin.HasSetting(DisableWatchedOverlay)">View_WatchedOverlay</include>
                 <include condition="$PARAM[selectbox]" content="View_Selectbox">
                     <param name="focusbounce" value="$PARAM[focusbounce]" />
                     <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -649,6 +621,7 @@
 
     <include name="Viewtype_Keywords_Itemlayout">
         <param name="selectbox" default="false" />
+        <param name="bordersize" default="35" />
         <param name="label-include" default="Viewtype_Landscape_Label" />
         <definition>
             <include>Object_PosterBack</include>
@@ -667,14 +640,15 @@
                     </control>
                 </include>
                 <control type="group">
-                    <height>75%</height>
+                    <height>72%</height>
                     <include content="Object_Artwork">
                         <param name="id" value="$PARAM[id]" />
                         <param name="altid" value="$PARAM[altid]" />
                         <param name="selectbox" value="$PARAM[selectbox]" />
-                        <param name="diffuse" value="$PARAM[diffuse]" />
-                        <param name="icon" value="$PARAM[icon]" />
-                        <param name="aspectratio" value="$PARAM[aspectratio]" />
+                        <param name="diffuse" value="diffuse/landscape-std.png" />
+                        <param name="icon" value="$VAR[Image_ClearLogo]" />
+                        <param name="aspectratio" value="keep" />
+                        <param name="bordersize" value="$PARAM[bordersize]" />
                     </include>
                 </control>
                 <control type="label">
@@ -756,7 +730,7 @@
                         <param name="icon" value="$PARAM[icon]" />
                         <param name="aspectratio" value="$PARAM[aspectratio]" />
                     </include>
-                    <include condition="!$PARAM[textpanel]">View_WatchedOverlay</include>
+                    <include condition="!$PARAM[textpanel] + !Skin.HasSetting(DisableWatchedOverlay)">View_WatchedOverlay</include>
                     <include condition="$PARAM[selectbox] + !$PARAM[textpanel]" content="View_Selectbox">
                         <param name="focusbounce" value="true" />
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -764,7 +738,7 @@
                 </control>
                 
                 <!-- Watched Overlay and Selectbox -->
-                <include condition="$PARAM[textpanel]">View_WatchedOverlay</include>
+                <include condition="$PARAM[textpanel] + !Skin.HasSetting(DisableWatchedOverlay)">View_WatchedOverlay</include>
                 <include condition="$PARAM[selectbox] + $PARAM[textpanel]" content="View_Selectbox">
                     <param name="focusbounce" value="true" />
                     <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -860,7 +834,6 @@
         <param name="itemlayout-height" default="180" />
         <param name="textbox-height" default="50" />
         <param name="movement" default="5" />
-        <param name="textonly" default="true" />
         <param name="label-include" default="Viewtype_Square_Label" />
         <param name="orientation" default="horizontal" />
         <param name="control-type" default="panel" />
@@ -879,7 +852,6 @@
                 <param name="diffuse" value="diffuse/square-std.png" />
                 <param name="textbox-height" value="$PARAM[textbox-height]" />
                 <param name="aspectratio" value="$PARAM[aspectratio]" />
-                <param name="textonly" value="$PARAM[textonly]" />
                 <nested />
             </include>
         </definition>
@@ -889,11 +861,11 @@
         <param name="itemlayout-width" default="item_square_width" />
         <param name="itemlayout-height" default="180" />
         <param name="orientation" default="horizontal" />
-        <param name="control-type" default="panel" />
+        <param name="controltype" default="panel" />
         <definition>
             <include content="Viewtype_Poster">
                 <param name="height" value="$PARAM[height]" />
-                <param name="control-type" value="panel" />
+                <param name="control-type" value="$PARAM[controltype]" />
                 <param name="orientation" value="$PARAM[orientation]" />
                 <param name="itemlayout-width" value="$PARAM[itemlayout-width]" />
                 <param name="itemlayout-height" value="$PARAM[itemlayout-height]" />
@@ -915,11 +887,28 @@
         <param name="textbox-visible" default="true" />
         <param name="movement" default="5" />
         <definition>
-            <include content="Viewtype_Keywords">
+            <include content="Viewtype_Keywords" condition="!Skin.HasSetting(LockMainMenu) | !Window.IsVisible(Home)">
                 <param name="height" value="$PARAM[height]" />
                 <param name="control-type" value="panel" />
                 <param name="orientation" value="$PARAM[orientation]" />
                 <param name="itemlayout-width" value="$PARAM[itemlayout-width]" />
+                <param name="itemlayout-height" value="$PARAM[itemlayout-height]" />
+                <param name="iconheight" value="item_settings_height" />
+                <param name="label-include" value="$PARAM[label-include]" />
+                <param name="movement" value="$PARAM[movement]" />
+                <param name="id" value="$PARAM[id]" />
+                <param name="icon" value="$VAR[Image_Poster]" />
+                <param name="diffuse" value="diffuse/square-std.png" />
+                <param name="textbox-height" value="$PARAM[textbox-height]" />
+                <param name="textbox-visible" value="$PARAM[textbox-visible]" />
+                <param name="aspectratio" value="$PARAM[aspectratio]" />
+                <nested />
+            </include>
+            <include content="Viewtype_Keywords" condition="Skin.HasSetting(LockMainMenu) + Window.IsVisible(Home)">
+                <param name="height" value="$PARAM[height]" />
+                <param name="control-type" value="panel" />
+                <param name="orientation" value="$PARAM[orientation]" />
+                <param name="itemlayout-width" value="410" />
                 <param name="itemlayout-height" value="$PARAM[itemlayout-height]" />
                 <param name="iconheight" value="item_settings_height" />
                 <param name="label-include" value="$PARAM[label-include]" />

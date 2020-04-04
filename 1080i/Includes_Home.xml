@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
-
-    <include name="Home_Submenu_Content"><content><include>skinshortcuts-submenu</include></content></include>
+    <include name="Home_FixedMenu_Right">
+        <right>160</right>
+    </include>
 
     <include name="Home_Movement_Widgets_UpDown">
         <onup>SetProperty(WidgetFocus,1)</onup>
@@ -26,6 +27,68 @@
             <include>Defs_Hidden_Button</include>
             <onclick>ActivateWindow(Weather)</onclick>
             <nested />
+        </control>
+    </include>
+
+    <include name="Home_Submenu">
+        <include content="Global_Overlay">
+            <left>160</left>
+            <visible>Control.HasFocus(303)</visible>
+        </include>
+
+        <include content="Dialog_PowerMenu">
+            <param name="id" value="303" />
+            <param name="header" value="$INFO[Container(301).ListItem.Label]" />
+            <param name="items" value="Items_SubMenu" />
+            <param name="visible" value="Control.HasFocus(303)" />
+            <param name="onleft" value="SetFocus(3992)" />
+            <param name="onright" value="SetFocus(3992)" />
+            <param name="onback" value="SetFocus(3992)" />
+            <param name="icon-visible" value="true" />
+            <top>200</top>
+            <left>-450</left>
+            <width>450</width>
+            <animation effect="slide" start="0" end="650" condition="Control.HasFocus(303)">Conditional</animation>
+            <animation type="WindowClose">
+                <effect type="slide" start="0" end="-160" time="400" tween="quadratic" />
+                <effect type="fade" start="100" end="0" tween="cubic" easing="out" delay="0" time="400" />
+            </animation>
+            <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(303).NumItems,8)">Conditional</animation>
+            <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(303).NumItems,7)">Conditional</animation>
+            <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(303).NumItems,6)">Conditional</animation>
+            <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(303).NumItems,5)">Conditional</animation>
+            <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(303).NumItems,4)">Conditional</animation>
+            <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(303).NumItems,3)">Conditional</animation>
+            <animation effect="slide" end="0,-40" condition="Integer.IsLess(Container(303).NumItems,2)">Conditional</animation>
+
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,0) + !Integer.IsGreater(Container(303).NumItems,7)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,1) + !Integer.IsGreater(Container(303).NumItems,6)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,2) + !Integer.IsGreater(Container(303).NumItems,5)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,3) + !Integer.IsGreater(Container(303).NumItems,4)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,4) + !Integer.IsGreater(Container(303).NumItems,3)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,5) + !Integer.IsGreater(Container(303).NumItems,2)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,6) + !Integer.IsGreater(Container(303).NumItems,1)">Conditional</animation>
+        </include>
+
+        <control type="image">
+            <left>184</left>
+            <top>312</top>
+            <height>16</height>
+            <width>16</width>
+            <include>Animation_FadeIn_SlideUp</include>
+            <visible>Control.HasFocus(303)</visible>
+            <animation type="WindowClose">
+                <effect type="slide" start="0" end="-160" time="400" tween="quadratic" />
+                <effect type="fade" start="100" end="0" tween="cubic" easing="out" delay="0" time="400" />
+            </animation>
+            <texture colordiffuse="dialog_bg_100">common/arrow-menu.png</texture>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,0)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,1)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,2)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,3)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,4)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,5)">Conditional</animation>
+            <animation effect="slide" end="0,80" condition="Integer.IsGreater(Container(301).Position,6)">Conditional</animation>
         </control>
     </include>
 
@@ -114,12 +177,13 @@
                                 <include content="Animation_UpDown">
                                     <param name="visible" value="Integer.IsEqual(Container(3700).NumItems,0)" />
                                 </include>
-                                <include content="Home_Widget_Fullscreen">
+                                <include content="Home_Widget_Fullscreen" condition="!Skin.HasSetting(FullscreenWidgetShowcase)">
                                     <onleft>301</onleft>
                                     <onback>301</onback>
                                     <include>Home_Movement_Widgets_UpDown</include>
                                     <onfocus>SetProperty(TMDbHelper.WidgetContainer,3001,Home)</onfocus>
                                 </include>
+                                <include condition="Skin.HasSetting(FullscreenWidgetShowcase)">Home_Hub_Showcase</include>
                             </control>
                         </control>
                     </control>
@@ -132,6 +196,241 @@
 
         <!-- Clock -->
         <include>Topbar_Right</include>
+    </include>
+
+    <include name="Home_Hub_Showcase">
+        <control type="group">
+            <include>skinshortcuts-template-showcase-background</include>
+            <control type="image">
+                <bottom>480</bottom>
+                <texture background="true" colordiffuse="cdffffff">common/vignette-home.png</texture>
+                <include>Animation_FadeInOut_Common</include>
+            </control>
+            <control type="image">
+                <bottom>0</bottom>
+                <height>480</height>
+                <texture colordiffuse="cdffffff">common/vignette-home-bottom.png</texture>
+                <include>Animation_FadeInOut_Common</include>
+            </control>
+            <control type="group">
+                <visible>$EXP[Exp_CommonAnimation] | [Control.HasFocus(5610) | Control.HasFocus(60)]</visible>
+                <include>Animation_FadeInOut</include>
+                <include>Global_Background</include>
+            </control>
+            
+            <control type="group">
+
+                <animation effect="slide" start="0" end="0,320" condition="Integer.IsEqual(Container(302).NumItems,0)">Conditional</animation>
+                <animation effect="slide" start="0" end="0,570" condition="!Integer.IsEqual(Container(302).NumItems,0)">Conditional</animation>
+                <animation effect="slide" tween="quadratic" time="400" start="0" end="0,-250" condition="Control.HasFocus(302) | [[Control.HasFocus(5610) | Control.HasFocus(60)] + !Integer.IsEqual(Container(302).NumItems,0)]">Conditional</animation>
+                <animation effect="slide" tween="quadratic" time="400" start="0" end="0,-320" condition="Control.HasFocus(5610) | Control.HasFocus(60)">Conditional</animation>
+                <visible allowhiddenfocus="true">!$EXP[Exp_CommonAnimation]</visible>
+                <include>Animation_Common</include>
+                <include>Animation_FadeInOut_Common</include>
+                <control type="group">
+                    <control type="grouplist">
+                        <animation effect="slide" time="0" start="0" end="0,250" condition="Integer.IsEqual(Container(302).NumItems,0)">Conditional</animation>
+                        <visible allowhiddenfocus="true">![Control.HasFocus(5610) | Control.HasFocus(60)]</visible>
+                        <animation type="Hidden">
+                            <effect type="fade" start="100" end="0" delay="0" time="300" tween="cubic" easing="inout" />
+                        </animation>
+                        <animation type="Visible">
+                            <effect type="fade" start="0" end="100" delay="200" time="400" tween="cubic" easing="inout" />
+                        </animation>
+                        <left>view_pad</left>
+                        <top>0</top>
+                        <bottom>730</bottom>
+                        <width>1100</width>
+                        <align>bottom</align>
+                        <orientation>vertical</orientation>
+                        <usecontrolcoords>true</usecontrolcoords>
+                        <itemgap>0</itemgap>
+                        <include content="Object_Info_Title">
+                            <param name="label" value="$INFO[Container(3001).ListItem.Title]" />
+                        </include>
+                        <include content="Object_Info_Line">
+                            <param name="label" value="$VAR[Label_56560_InfoLine]" />
+                            <param name="image" value="$VAR[Image_56560_VideoQuality]" />
+                        </include>
+                        <include content="Object_Info_Plot">
+                            <param name="maxheight" value="80" />
+                            <param name="height" value="80" />
+                            <param name="label" value="$INFO[Container(3001).ListItem.Plot]" />
+                            <top>10</top>
+                        </include>
+                        <control type="group">
+                            <height>20</height>
+                        </control>
+                        <control type="grouplist">
+                            <left>-20</left>
+                            <right>-26</right>
+                            <align>left</align>
+                            <height>110</height>
+                            <onleft condition="!Window.IsVisible(Home)">Control.Move(3001,-1)</onleft>
+                            <onleft condition="!Window.IsVisible(Home)">3101</onleft>
+                            <onleft condition="Window.IsVisible(Home)">301</onleft>
+                            <onright>Control.Move(3001,1)</onright>
+                            <onright>3102</onright>
+                            <onback condition="!Window.IsVisible(Home)">302</onback>
+                            <onback condition="Window.IsVisible(Home)">301</onback>
+                            <orientation>horizontal</orientation>
+                            <usecontrolcoords>true</usecontrolcoords>
+                            <itemgap>-10</itemgap>
+                            <include content="Object_Info_Button" description="Play">
+                                <param name="id" value="3101" />
+                                <param name="groupid" value="3201" />
+                                <param name="label" value="Play" />
+                                <param name="icon" value="special://skin/extras/icons/play3.png" />
+                                <param name="ondown" value="302" />
+                                <param name="visible" value="true" />
+                                <param name="onup" value="Control.Move(3001,-1)" />
+                                <onclick>SetFocus(3001)</onclick>
+                                <onclick>Action(Select)</onclick>
+                                <onclick>Action(Close)</onclick>
+                                <onfocus>SetProperty(TMDbHelper.WidgetContainer,3001,Home)</onfocus>
+                            </include>
+                            <include content="Object_Info_Button" description="Play">
+                                <param name="id" value="3102" />
+                                <param name="groupid" value="3202" />
+                                <param name="label" value="More Information" />
+                                <param name="icon" value="special://skin/extras/icons/info2.png" />
+                                <param name="ondown" value="302" />
+                                <param name="visible" value="true" />
+                                <param name="onup" value="Control.Move(3001,-1)" />
+                                <onclick>SetFocus(3001)</onclick>
+                                <onclick>Action(Info)</onclick>
+                                <onfocus>SetProperty(TMDbHelper.WidgetContainer,3001,Home)</onfocus>
+                            </include>
+                        </control>
+                    </control>
+                    <control type="grouplist">
+                        <visible>[Control.HasFocus(5610) | Control.HasFocus(60)]</visible>
+                        <animation type="Visible">
+                            <effect type="fade" start="0" end="100" delay="300" time="400" tween="cubic" easing="inout" />
+                        </animation>
+                        <animation type="Hidden">
+                            <effect type="fade" start="100" end="0" delay="0" time="300" tween="cubic" easing="inout" />
+                        </animation>
+
+                        <left>view_pad</left>
+                        <top>65</top>
+                        <bottom>480</bottom>
+                        <width>1100</width>
+                        <align>bottom</align>
+                        <orientation>vertical</orientation>
+                        <usecontrolcoords>true</usecontrolcoords>
+                        <itemgap>0</itemgap>
+                        <include content="Object_Info_Title">
+                            <param name="label" value="$INFO[Container(5610).ListItem.Title]" />
+                        </include>
+                        <include content="Object_Info_Line">
+                            <param name="container" value="Container(5610)." />
+                        </include>
+                        <include content="Object_Info_Ratings" condition="!Skin.HasSetting(DisableAllRatings)">
+                            <param name="container" value="Container(5610)." />
+                        </include>
+                        <include content="Object_Info_Plot">
+                            <param name="maxheight" value="160" />
+                            <param name="height" value="160" />
+                            <param name="label" value="$INFO[Container(5610).ListItem.Plot]" />
+                        </include>
+                        <control type="group">
+                            <height>55</height>
+                        </control>
+                    </control>
+                    <control type="image">
+                        <right>view_pad</right>
+                        <bottom>760</bottom>
+                        <aspectratio align="right" aligny="bottom">keep</aspectratio>
+                        <height>80</height>
+                        <fadetime>200</fadetime>
+                        <animation effect="slide" time="0" start="0" end="0,250" condition="Integer.IsEqual(Container(302).NumItems,0)">Conditional</animation>
+                        <animation effect="slide" end="-160" time="400" tween="quadratic" condition="Control.HasFocus(301) | Control.HasFocus(303) | [Control.HasFocus(3992) + String.IsEmpty(Window.Property(WidgetFocus))] | Skin.HasSetting(LockMainMenu)">Conditional</animation>
+                        <texture background="true">$VAR[Image_Home_ClearLogo]</texture>
+                        <animation type="Hidden">
+                            <effect type="fade" start="100" end="0" delay="0" time="300" tween="cubic" easing="inout" />
+                        </animation>
+                        <animation type="Visible">
+                            <effect type="fade" start="0" end="100" delay="200" time="400" tween="cubic" easing="inout" />
+                        </animation>
+                        <visible>![Control.HAsFocus(5610) | Control.HasFocus(60)]</visible>
+                    </control>
+                </control>
+                <control type="group">
+                    <include>View_Pad</include>
+                    <control type="image">
+                        <right>-15</right>
+                        <bottom>385</bottom>
+                        <height>350</height>
+                        <width>700</width>
+                        <texture background="true">$VAR[Image_ClearArt]</texture>
+                        <aspectratio align="right" aligny="bottom" scalediffuse="false">keep</aspectratio>
+                        <bordersize>15</bordersize>
+                        <animation type="Hidden">
+                            <effect type="fade" start="100" end="0" delay="0" time="300" tween="cubic" easing="inout" />
+                        </animation>
+                        <animation type="Visible">
+                            <effect type="fade" start="0" end="100" delay="200" time="400" tween="cubic" easing="inout" />
+                        </animation>
+                        <visible>[Control.HAsFocus(5610) | Control.HasFocus(60)]</visible>
+                    </control>
+                    <include content="Viewtype_BackPanel">
+                        <include>Animation_FadeInOut</include>
+                        <visible>[Control.HAsFocus(5610) | Control.HasFocus(60)]</visible>
+                        <height>480</height>
+                    </include>
+                    <control type="group">
+                        <left>-15</left>
+                        <bottom>285</bottom>
+                        <height>120</height>
+                        <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
+                        <visible>Container(5610).IsUpdating</visible>
+                        <include content="Defs_BusySpinner">
+                            <param name="label" value="$LOCALIZE[31428]..." />
+                            <param name="textcolor" value="main_fg_70" />
+                        </include>
+                    </control>
+                    <control type="group">
+                        <bottom>250</bottom>
+                        <top>-250</top>
+                        <visible allowhiddenfocus="true">![Control.HasFocus(5610) | Control.HasFocus(60)]</visible>
+                        <animation effect="fade" start="100" end="0" delay="0" time="400" tween="cubic" easing="inout">Hidden</animation>
+                        <animation effect="fade" start="0" end="100" delay="200" time="400" tween="cubic" easing="inout">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="300" reversible="false" condition="Container(302).IsUpdating">Conditional</animation>
+                        <animation effect="fade" start="0" end="100" delay="300" time="300" reversible="false" condition="!Container(302).IsUpdating">Conditional</animation>
+                        <include content="Viewtype_Keywords">
+                            <param name="id" value="302" />
+                            <param name="controltype" value="fixedlist" />
+                            <param name="movement" value="5" />
+                            <bottom>-20</bottom>
+                            <left>-80</left>
+                            <right>-80</right>
+                            <onup>3101</onup>
+                            <!-- <onleft condition="Window.IsVisible(Home)">3101</onleft> -->
+                            <onback condition="Window.IsVisible(Home)">3101</onback>
+                            <onfocus>SetProperty(TMDbHelper.WidgetContainer,3001,Home)</onfocus>
+                            <ondown>SetProperty(TMDbHelper.WidgetContainer,5610,Home)</ondown>
+                            <ondown>5610</ondown>
+                            <include>Items_SubMenu</include>
+                        </include>
+                        <include content="Home_Hub_Widget_Label">
+                            <param name="id" value="302" />
+                            <param name="label" value="Submenu" />
+                        </include>
+                    </control>
+                    <control type="group">
+                        <animation effect="fade" start="100" end="0" time="300" reversible="false" condition="Container(5610).IsUpdating">Conditional</animation>
+                        <animation effect="fade" start="0" end="100" delay="300" time="300" reversible="false" condition="!Container(5610).IsUpdating">Conditional</animation>
+                        <include content="Home_Hub_Widget_Label">
+                            <param name="id" value="5610" />
+                            <param name="label" value="$VAR[Label_Hub_WidgetName]" />
+                        </include>
+                        <include>skinshortcuts-template-spotlight-submenu</include>
+                        <include>skinshortcuts-template-spotlight-mainmenu</include>
+                    </control>
+                </control>
+            </control>
+        </control>
     </include>
 
     <include name="Home_Widget_Fullscreen_Info">
@@ -153,17 +452,18 @@
                     <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Title]" />
                 </include>
                 <include content="Object_Info_Line">
+                    <param name="label" value="$VAR[Label_Home_InfoLine]" />
+                    <param name="image" value="$VAR[Image_Home_VideoQuality]" />
+                </include>
+                <include content="Object_Info_Ratings" condition="!Skin.HasSetting(DisableAllRatings)">
                     <param name="container" value="Container($PARAM[id])." />
                 </include>
-                <include content="Object_Info_Ratings" condition="!Skin.HasSetting(DisableFullscreenWidgetRatings)">
-                    <param name="container" value="Container($PARAM[id])." />
-                </include>
-                <include content="Object_Info_Plot" condition="!Skin.HasSetting(DisableFullscreenWidgetRatings)">
+                <include content="Object_Info_Plot" condition="!Skin.HasSetting(DisableAllRatings)">
                     <param name="maxheight" value="80" />
                     <param name="height" value="auto" />
                     <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Plot]" />
                 </include>
-                <include content="Object_Info_Plot" condition="Skin.HasSetting(DisableFullscreenWidgetRatings)">
+                <include content="Object_Info_Plot" condition="Skin.HasSetting(DisableAllRatings)">
                     <param name="maxheight" value="80" />
                     <param name="height" value="auto" />
                     <param name="label" value="$INFO[Container($PARAM[id]).ListItem.Plot]" />
@@ -176,7 +476,7 @@
                 <aspectratio align="right" aligny="bottom">keep</aspectratio>
                 <height>80</height>
                 <fadetime>200</fadetime>
-                <animation effect="slide" end="-160" time="400" tween="quadratic" condition="Control.HasFocus(301) | Control.HasFocus(302) | [Control.HasFocus(3992) + String.IsEmpty(Window.Property(WidgetFocus))]">Conditional</animation>
+                <animation effect="slide" end="-160" time="400" tween="quadratic" condition="Control.HasFocus(301) | Control.HasFocus(303) | [Control.HasFocus(3992) + String.IsEmpty(Window.Property(WidgetFocus))] | Skin.HasSetting(LockMainMenu)">Conditional</animation>
                 <texture background="true">$VAR[Image_Home_ClearLogo]</texture>
             </control>
         </control>
@@ -234,7 +534,6 @@
 
     <include name="Home_Menu_Header">
         <param name="labelvisible" default="true" />
-        <param name="icononly" default="false" />
         <param name="width" default="450" />
         <definition>
             <control type="group">
@@ -263,47 +562,9 @@
                     <height>item_list_height</height>
                     <bordersize>8</bordersize>
                     <texture background="true" colordiffuse="dialog_fg_70">$PARAM[icon]</texture>
-                    <visible>$PARAM[icononly]</visible>
-                </control>
-                <control type="image">
-                    <right>20</right>
-                    <bottom>-4</bottom>
-                    <width>item_list_height</width>
-                    <height>item_list_height</height>
-                    <bordersize>8</bordersize>
-                    <texture background="true" colordiffuse="dialog_fg_70">$PARAM[icon]</texture>
-                    <visible>!$PARAM[icononly]</visible>
-                    <visible>$PARAM[labelvisible]</visible>
-                    <include>Animation_KodiLogo</include>
-                </control>
-                <control type="label">
-                    <bottom>0</bottom>
-                    <left>140</left>
-                    <right>120</right>
-                    <right>view_pad</right>
-                    <align>right</align>
-                    <aligny>center</aligny>
-                    <textcolor>dialog_fg_70</textcolor>
-                    <font>font_mainmenu</font>
-                    <label>$PARAM[label]</label>
-                    <visible>!$PARAM[icononly]</visible>
-                    <visible>$PARAM[labelvisible]</visible>
-                    <include>Animation_KodiLogo</include>
                 </control>
             </control>
         </definition>
-    </include>
-
-    <include name="Home_Menu_FocusButton">
-        <control type="button">
-            <include>Defs_Hidden_Button</include>
-            <onfocus>SetProperty(Hub.Label,$INFO[Container($PARAM[mainmenu-id]).ListItem.Label],Home)</onfocus>
-            <onfocus>SetProperty(Hub.submenuVisibility,$INFO[Container($PARAM[mainmenu-id]).ListItem.Property(submenuVisibility)],Home)</onfocus>
-            <onfocus>SetProperty(Hub.widgetPath,$INFO[Container($PARAM[mainmenu-id]).ListItem.Property(widgetPath)],Home)</onfocus>
-            <onfocus>SetProperty(Hub.widgetTarget,$INFO[Container($PARAM[mainmenu-id]).ListItem.Property(widgetTarget)],Home)</onfocus>
-            <onfocus>SetProperty(Hub.widgetName,$INFO[Container($PARAM[mainmenu-id]).ListItem.Property(widgetName)],Home)</onfocus>
-            <onfocus>SetProperty(Hub.widgetAspect,$INFO[Container($PARAM[mainmenu-id]).ListItem.Property(widgetAspect)],Home)</onfocus>
-        </control>
     </include>
 
     <include name="Home_Menu">
@@ -326,11 +587,21 @@
                     </control>
                 </itemlayout>
                 <focusedlayout height="item_list_height" width="160">
-                    <include condition="$PARAM[focusbutton]">Home_Menu_FocusButton</include>
-                    <control type="image">
-                        <texture colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+                    <control type="group">
+                        <visible>!Control.HasFocus(301) + !Control.HasFocus(303) + ![Control.HasFocus(3992) + String.IsEmpty(Window.Property(WidgetFocus))]</visible>
+                        <control type="image">
+                            <right>40</right>
+                            <width>item_list_height</width>
+                            <height>item_list_height</height>
+                            <bordersize>8</bordersize>
+                            <texture background="true" colordiffuse="dialog_fg_70">$INFO[ListItem.Icon]</texture>
+                        </control>
                     </control>
                     <control type="group">
+                        <visible>Control.HasFocus(301) | Control.HasFocus(303) | [Control.HasFocus(3992) + String.IsEmpty(Window.Property(WidgetFocus))]</visible>
+                        <control type="image">
+                            <texture colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+                        </control>
                         <control type="image">
                             <texture colordiffuse="$VAR[ColorHighlight3]">common/white-gradient.png</texture>
                         </control>
@@ -350,8 +621,6 @@
 
     <include name="Home_Menu_Vertical">
         <param name="mainmenu-id" default="301" />
-        <param name="focusbutton" default="false" />
-        <param name="submenu" default="true" />
         <definition>
             <include content="Viewtype_Panel">
                 <param name="width" value="160" />
@@ -360,17 +629,12 @@
                 <control type="group">
                     <top>view_top</top>
                     <include content="Home_Menu_Header">
-                        <param name="labelvisible" value="false" />
                         <param name="width" value="160" />
                         <param name="icon" value="special://skin/extras/icons/home.png" />
-                        <param name="icononly" value="true" />
-                        <animation effect="fade" start="0" end="100" time="1" reversible="false" delay="400">Visible</animation>
                     </include>
                     <include content="Home_Menu">
                         <param name="id" value="$PARAM[mainmenu-id]" />
                         <param name="font" value="font_mainmenu" />
-                        <param name="icononly" value="true" />
-                        <param name="focusbutton" value="$PARAM[focusbutton]" />
                         <onfocus>ClearProperty(TMDbHelper.WidgetContainer,Home)</onfocus>
                         <onback>3000</onback>
                         <onleft>SetFocus(302)</onleft>
@@ -378,7 +642,6 @@
                         <onfocus>ClearProperty(WidgetFocus)</onfocus>
                         <onfocus condition="String.IsEmpty(Window.Property(301Click))">SetFocus(3992)</onfocus>
                         <onfocus>ClearProperty(301Click)</onfocus>
-                        <animation effect="fade" start="0" end="100" time="1" reversible="false" delay="400">Visible</animation>
                         <content><include>skinshortcuts-mainmenu</include></content>
                     </include>
                 </control>
@@ -394,8 +657,9 @@
                 <control type="grouplist">
                     <top>5</top>
                     <left>100</left>
-                    <right>580</right>
                     <bottom>60</bottom>
+                    <include condition="Skin.HasSetting(LockMainMenu)">Viewtype_Info_Right_FixedHome</include>
+                    <include condition="!Skin.HasSetting(LockMainMenu)">Viewtype_Info_Right</include>
                     <orientation>vertical</orientation>
                     <usecontrolcoords>true</usecontrolcoords>
                     <itemgap>0</itemgap>
@@ -412,7 +676,8 @@
                         <visible>String.IsEmpty(Container($PARAM[id]).ListItem.TvShowTitle) + String.IsEmpty(Container($PARAM[id]).ListItem.Title)</visible>
                     </include>
                     <include content="Object_Info_Line">
-                        <param name="container" value="Container($PARAM[id])." />
+                        <param name="label" value="$VAR[Label_Home_InfoLine]" />
+                        <param name="image" value="$VAR[Image_Home_VideoQuality]" />
                     </include>
                     <include content="Object_Info_Ratings">
                         <param name="container" value="Container($PARAM[id])." />

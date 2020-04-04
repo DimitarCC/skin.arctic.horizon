@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+
+    <include name="Defs_Movement_Banner">
+        <movement>0</movement>
+    </include>
+
+    <include name="Defs_Movement_Square_Locked">
+        <movement>4</movement>
+    </include>
+    <include name="Defs_Movement_Square_Normal">
+        <movement>5</movement>
+    </include>
+    <include name="Defs_Movement_Square">
+        <include condition="Skin.HasSetting(LockMainMenu)">Defs_Movement_Square_Locked</include>
+        <include condition="!Skin.HasSetting(LockMainMenu)">Defs_Movement_Square_Normal</include>
+    </include>
+
+    <include name="Defs_Movement_Landscape_Locked">
+        <movement>2</movement>
+    </include>
+    <include name="Defs_Movement_Landscape_Normal">
+        <movement>3</movement>
+    </include>
+    <include name="Defs_Movement_Landscape">
+        <include condition="Skin.HasSetting(LockMainMenu)">Defs_Movement_Landscape_Locked</include>
+        <include condition="!Skin.HasSetting(LockMainMenu)">Defs_Movement_Landscape_Normal</include>
+    </include>
+
+    <include name="Defs_Movement_Poster_Locked">
+        <movement>5</movement>
+    </include>
+    <include name="Defs_Movement_Poster_Normal">
+        <movement>6</movement>
+    </include>
+    <include name="Defs_Movement_Poster">
+        <include condition="Skin.HasSetting(LockMainMenu)">Defs_Movement_Poster_Locked</include>
+        <include condition="!Skin.HasSetting(LockMainMenu)">Defs_Movement_Poster_Normal</include>
+    </include>
+
     <variable name="Defs_ScreensaverWidget">
         <value condition="!String.IsEmpty(Skin.String(screensaver.arctic.mirage.path))">$INFO[Skin.String(screensaver.arctic.mirage.path)]</value>
         <value>special://skin/extras/playlists/RandomMovies.xsp</value>
@@ -137,6 +175,7 @@
     <include name="Defs_Settings_Gradient">
         <control type="group">
             <nested />
+            <animation effect="fade" start="0" end="100" time="1">Visible</animation>
             <animation effect="slide" end="0,item_list_height" condition="Integer.IsGreater(Container($PARAM[id]).Position,0)">Conditional</animation>
             <animation effect="slide" end="0,item_list_height" condition="Integer.IsGreater(Container($PARAM[id]).Position,1)">Conditional</animation>
             <animation effect="slide" end="0,item_list_height" condition="Integer.IsGreater(Container($PARAM[id]).Position,2)">Conditional</animation>
@@ -305,6 +344,13 @@
         <value>videos</value>
     </variable>
 
+    <include name="Defs_InfoButtonList">
+        <left>80</left>
+        <right>80</right>
+        <bottom>-50</bottom>
+        <height>130</height>
+    </include>
+
     <include name="Defs_ButtonList">
         <left>-20</left>
         <right>-26</right>
@@ -415,14 +461,21 @@
         </control>
     </include>
 
-    <include name="Defs_Hidden_Button">
-        <top>-100</top>
+    <include name="Defs_Offscreen">
+        <top>-1000</top>
+        <left>-1000</left>
         <width>1</width>
         <height>1</height>
-        <visible allowhiddenfocus="true">False</visible>
+    </include>
+    <include name="Defs_Offscreen_Button">
+        <include>Defs_Offscreen</include>
         <texturefocus />
         <texturenofocus />
         <font />
+    </include>
+    <include name="Defs_Hidden_Button">
+        <include>Defs_Offscreen_Button</include>
+        <visible allowhiddenfocus="true">False</visible>
     </include>
 
     <include name="Defs_Hidden_List">
@@ -574,11 +627,6 @@
         <include>Topbar_Left</include>
         <include condition="!Window.Previous(home)" content="View_Settings">
             <include>View_Pad</include>
-        </include>
-        <include content="Object_Settings_Info">
-            <param name="visible" value="Control.HasFocus(300) | !Window.IsVisible(SettingsCategory.xml)" />
-            <param name="id" value="5800" />
-            <param name="label" value="$VAR[Label_Settings_Information]" />
         </include>
     </include>
 

@@ -202,11 +202,11 @@
         <autoscroll delay="6000" time="3000" repeat="10000"/>
     </default>
 
-    <expression name="Exp_AlphabetTypes">[[String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558])] + Integer.IsGreater(Container.NumPages,2)]</expression>
+    <expression name="Exp_AlphabetTypes">[[String.IsEqual(Container.SortMethod,$LOCALIZE[551]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[561]) | String.IsEqual(Container.SortMethod,$LOCALIZE[557]) | String.IsEqual(Container.SortMethod,$LOCALIZE[558])] + Integer.IsGreater(Container.NumPages,4)]</expression>
 
-    <expression name="Exp_View50Tags">[[Container.Content(playlists) | [Container.Content() + String.IsEmpty(Container.PluginName)] | [[Container.Content(tags) | Container.Content(countries) | Container.Content(genres) | Container.Content(studios) | Container.Content(years) | Container.Content(directors)] + !String.IsEmpty(Container.PluginName)]] + !Window.IsVisible(MyPlaylist.xml)]</expression>
+    <expression name="Exp_View50Tags">[[Container.Content(playlists) | [Container.Content() + String.IsEmpty(Container.PluginName)] | [[Container.Content(tags) | Container.Content(countries) | Container.Content(genres) | Container.Content(studios) | Container.Content(years) | Container.Content(directors)] + !String.IsEmpty(Container.PluginName)]] + !Window.IsVisible(MyPlaylist.xml) + !Window.IsVisible(MyPVRTimers.xml) + !Window.IsVisible(MyPVRRecordings.xml) + !Window.IsVisible(MyPVRSearch.xml)]</expression>
 
-    <expression name="Exp_View500List">[[Container.Content(songs) | [Container.Content() + !String.IsEmpty(Container.PluginName)] | [Container.Content(addons) + !String.IsEmpty(Container.PluginName)] | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(musicplaylist)] + !Window.IsVisible(MyPVRRecordings.xml)]</expression>
+    <expression name="Exp_View500List">[Container.Content(songs) | [[Container.Content() |  Container.Content(addons)] + !String.IsEmpty(Container.PluginName)] | Window.IsVisible(MyPVRSearch.xml) | Window.IsVisible(MyPVRRecordings.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(musicplaylist)]</expression>
 
     <expression name="Exp_View56Hubs">[[Container.Content(tags) | Container.Content(countries) | Container.Content(genres) | Container.Content(studios) | Container.Content(years) | Container.Content(directors)] + String.IsEmpty(Container.PluginName)]</expression>
 
@@ -220,8 +220,8 @@
 
     <expression name="Exp_IsPluginAdvancedLauncher">[String.StartsWith(Container.FolderPath,plugin://plugin.program.advanced.launcher/) | String.StartsWith(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher/) | String.StartsWith(Container.FolderPath,plugin://plugin.program.advanced.MAME.launcher/)]</expression>
 
-    <expression name="Exp_ShowPlotOverlay">[ControlGroup(9601).HasFocus() | Control.HasFocus(9603)]</expression>
+    <expression name="Exp_ShowPlotOverlay">[ControlGroup(9601).HasFocus() | Control.HasFocus(9603) | Control.HasFocus(9604)]</expression>
 
-    <expression name="Exp_GlobalBackground">[!Player.HasMedia | [Player.HasVideo + !Skin.HasSetting(global.showvideo)] | [!Skin.HasSetting(global.showvisualisation) + Player.HasAudio] | [Player.HasAudio + !String.IsEmpty(Window(Home).Property(PlayingBackgroundMedia))]]</expression>
+    <expression name="Exp_GlobalBackground">[!Player.HasMedia | [Player.HasVideo + !Skin.HasSetting(global.showvideo)] | [Player.HasAudio + !Skin.HasSetting(global.showvisualisation)] | [Player.HasAudio + !String.IsEmpty(Window(Home).Property(PlayingBackgroundMedia))]]</expression>
 
 </includes>

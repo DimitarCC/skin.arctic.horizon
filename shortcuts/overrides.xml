@@ -4,7 +4,6 @@
     <widgetPlaylists>True</widgetPlaylists>
     <thumbnailBrowseDefault>special://skin/extras/icons/</thumbnailBrowseDefault>
     <backgroundBrowse>True</backgroundBrowse>
-    <background label="::PLAYLIST::">playlistBackground</background>
     <widgetRename>True</widgetRename>
     <widget label="8">Weather</widget>
     <widget label="5">Settings</widget>
@@ -15,6 +14,14 @@
     <!-- For Power Menu -->
     <groupoverride group="powermenu" condition="Window.IsActive(DialogButtonMenu.xml)">Close</groupoverride>
 
+    <override action="SetFocus(302,0,absolute)">
+        <action>SetFocus(303,0,absolute)</action>
+    </override>
+
+    <override action="SetFocus(302)">
+        <action>SetFocus(303,0,absolute)</action>
+    </override>
+
     <override action="ActivateWindow(1110)">
         <action>SetProperty(Hub.Label,$INFO[Container(301).ListItem.Label],Home)</action>
         <action>SetProperty(Hub.submenuVisibility,$INFO[Container(301).ListItem.Property(submenuVisibility)],Home)</action>
@@ -23,6 +30,16 @@
         <action>SetProperty(Hub.widgetName,$INFO[Container(301).ListItem.Property(widgetName)],Home)</action>
         <action>SetProperty(Hub.widgetAspect,$INFO[Container(301).ListItem.Property(widgetAspect)],Home)</action>
         <action>ActivateWindow(1110)</action>
+    </override>
+
+    <override action="ActivateWindow(1150)">
+        <action>SetProperty(Hub.Label,$INFO[Container(301).ListItem.Label],Home)</action>
+        <action>SetProperty(Hub.submenuVisibility,$INFO[Container(301).ListItem.Property(submenuVisibility)],Home)</action>
+        <action>SetProperty(Hub.widgetPath,$INFO[Container(301).ListItem.Property(widgetPath)],Home)</action>
+        <action>SetProperty(Hub.widgetTarget,$INFO[Container(301).ListItem.Property(widgetTarget)],Home)</action>
+        <action>SetProperty(Hub.widgetName,$INFO[Container(301).ListItem.Property(widgetName)],Home)</action>
+        <action>SetProperty(Hub.widgetAspect,$INFO[Container(301).ListItem.Property(widgetAspect)],Home)</action>
+        <action>ActivateWindow(1150)</action>
     </override>
 
     <override action="Skin.SetString(SearchTerm)">
@@ -67,6 +84,7 @@
     <property property="widgetAspect">Square</property>
     <property property="widgetAspect">Landscape</property>
     <property property="widgetAspect">Banner</property>
+    <property property="widgetAspect">Icon</property>
     <propertySettings property="widgetAspect" buttonID="9901" title="Widget Aspect Ratio" />
 
     <!-- Widget Target -->
@@ -117,6 +135,7 @@
     <property property="widgetLimit" label="25 ">$NUMBER[25]</property>
     <property property="widgetLimit" label="50 ">$NUMBER[50]</property>
     <property property="widgetLimit" label="100 ">$NUMBER[100]</property>
+    <property property="widgetLimit" label="$LOCALIZE[21428] ">$NUMBER[99999]</property>
     <propertySettings property="widgetLimit" buttonID="9905" title="Widget Item Limit" />
 
     <!-- Search Item Default Properties -->
@@ -225,7 +244,9 @@
             <shortcut label="$LOCALIZE[10821]" type="32021" icon="special://skin/extras/icons/games.png">ActivateWindow(Games)</shortcut>
             <shortcut label="$LOCALIZE[137]" type="$LOCALIZE[31018]" icon="special://skin/extras/icons/search.png">Skin.SetString(SearchTerm)</shortcut>
             <shortcut label="$LOCALIZE[33060]" type="$LOCALIZE[31018]" icon="special://skin/extras/icons/power.png">ActivateWindow(shutdownmenu)</shortcut>
+            <shortcut label="$LOCALIZE[31246]" type="32021" icon="special://skin/extras/icons/playlist.png">SetFocus(303,0,absolute)</shortcut>
             <shortcut label="$LOCALIZE[31429]" type="32021" icon="special://skin/extras/icons/compass.png">ActivateWindow(1110)</shortcut>
+            <shortcut label="$LOCALIZE[31247]" type="32021" icon="special://skin/extras/icons/globe.png">ActivateWindow(1150)</shortcut>
             <shortcut label="Next Aired - Library" type="32021" icon="special://skin/extras/icons/antenna.png">ActivateWindow(1111)</shortcut>
             <shortcut label="Next Aired - Trakt" type="32021" icon="special://skin/extras/icons/announce.png">ActivateWindow(1112)</shortcut>
             <shortcut label="$LOCALIZE[31017]" type="32010" icon="special://skin/extras/icons/shipping.png">||BROWSE||script.skin.helper.service/?action=smartshortcuts</shortcut>
@@ -424,6 +445,15 @@
                 <shortcut widget="DeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/deleted?view=flat</shortcut>
                 <shortcut widget="GroupedDeletedRecordings" label="$LOCALIZE[31384]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/tv/deleted?view=grouped</shortcut>
                 <shortcut widget="Timers" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/tv/timers</shortcut>
+            </node>
+            <node label="$LOCALIZE[19021]">
+                <shortcut widget="RadioLastPlayedChannels" label="$LOCALIZE[31381]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*?view=lastplayed</shortcut>
+                <shortcut widget="RadioAllChannels" label="$LOCALIZE[19287]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://channels/radio/*</shortcut>
+                <shortcut widget="RadioActiveRecordings" label="$LOCALIZE[31382]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/active?view=flat</shortcut>
+                <shortcut widget="RadioGroupedActiveRecordings" label="$LOCALIZE[31383]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/active?view=grouped</shortcut>
+                <shortcut widget="RadioDeletedRecordings" label="$LOCALIZE[19184]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/deleted?view=flat</shortcut>
+                <shortcut widget="RadioGroupedDeletedRecordings" label="$LOCALIZE[31384]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://recordings/radio/deleted?view=grouped</shortcut>
+                <shortcut widget="RadioTimers" label="$LOCALIZE[19040]" icon="DefaultAddonPVRClient.png" widgetTarget="pvr">pvr://timers/radio/timers</shortcut>
             </node>
             <node label="$LOCALIZE[29921]">
                 <content>widgets</content>

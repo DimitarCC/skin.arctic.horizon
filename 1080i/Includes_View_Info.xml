@@ -4,7 +4,7 @@
     <include name="View_Info_Grouplist">
         <param name="container" default="" />
         <param name="plotheight" default="120" />
-        <param name="plotmaxheight" default="120" />
+        <param name="plotmaxheight" default="80" />
         <param name="codectop" default="20" />
         <param name="visible-details" default="true" />
         <param name="ratings" default="true" />
@@ -17,9 +17,10 @@
                     <param name="label" value="$PARAM[title]" />
                 </include>
                 <include content="Object_Info_Line">
-                    <param name="container" value="$PARAM[container]" />
+                    <param name="label" value="$PARAM[infoline-label]" />
+                    <param name="image" value="$PARAM[infoline-image]" />
                 </include>
-                <include content="Object_Info_Ratings" condition="$PARAM[ratings]">
+                <include content="Object_Info_Ratings" condition="$PARAM[ratings] + !Skin.HasSetting(DisableAllRatings)">
                     <param name="container" value="$PARAM[container]" />
                     <visible>$PARAM[visible-details]</visible>
                     <visible>String.IsEqual($PARAM[container]ListItem.DBType,movie) | String.IsEqual($PARAM[container]ListItem.DBType,episode) | String.IsEqual($PARAM[container]ListItem.DBType,tvshow) | String.IsEqual($PARAM[container]ListItem.DBType,season) | String.IsEqual($PARAM[container]ListItem.DBType,set)</visible>
@@ -36,6 +37,7 @@
                     <param name="maxheight" value="$PARAM[plotmaxheight]" />
                     <param name="height" value="$PARAM[plotheight]" />
                     <param name="label" value="$PARAM[plot]" />
+                    <param name="control-type" value="textbox" />
                     <visible>$PARAM[visible-details]</visible>
                 </include>
                 <nested />
@@ -61,7 +63,7 @@
                 <param name="label" value="$LOCALIZE[5]" />
                 <param name="icon" value="special://skin/extras/icons/settings.png" />
                 <param name="ondown" value="50" />
-                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + String.IsEqual(ListItem.Label2,Enabled) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml)" />
+                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + String.IsEqual(ListItem.Label2,$LOCALIZE[449]) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml)" />
                 <onclick>Addon.OpenSettings($INFO[ListItem.Property(Addon.ID)])</onclick>
             </include>
             <include content="Object_Info_Button" description="Install">
@@ -70,7 +72,7 @@
                 <param name="label" value="$LOCALIZE[24038]" />
                 <param name="icon" value="special://skin/extras/icons/download.png" />
                 <param name="ondown" value="50" />
-                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + !String.IsEqual(ListItem.Label2,Enabled) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml)" />
+                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + !String.IsEqual(ListItem.Label2,$LOCALIZE[449]) + !String.IsEqual(ListItem.Label2,$LOCALIZE[24023]) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml)" />
                 <onclick>InstallAddon($INFO[ListItem.Property(Addon.ID)])</onclick>
             </include>
             <!-- <include content="Object_Info_Button" description="Play">

@@ -66,7 +66,9 @@
                         <include content="View_Info_Grouplist">
                             <height>285</height>
                         </include>
-                        <include>Info_Button_Grouplist</include>
+                    </include>
+                    <include content="Info_Button_Grouplist">
+                        <include>Defs_InfoButtonList</include>
                     </include>
                     <include content="DialogVideoInfo_Widget_Details">
                         <param name="id" value="7100" />
@@ -156,11 +158,11 @@
                 </include>
                 <!-- List 01 -->
                 <include content="Info_Widget_Poster">
-                    <param name="includecondition" value="true" />
                     <param name="id" value="5001" />
                     <param name="groupid" value="5101" />
                     <param name="label" value="Movies as Cast Member" />
                     <param name="labelinclude" value="View_Cast_Character_Label" />
+                    <param name="castlabel" value="true" />
                     <include>Defs_InfoList_OnClick</include>
                     <include>Defs_InfoList_OnBack</include>
                     <movement>3</movement>
@@ -168,11 +170,11 @@
                 </include>
                 <!-- List 02 -->
                 <include content="Info_Widget_Poster">
-                    <param name="includecondition" value="true" />
                     <param name="id" value="5002" />
                     <param name="groupid" value="5102" />
                     <param name="label" value="TvShows as Cast Member" />
                     <param name="labelinclude" value="View_Cast_Character_Label" />
+                    <param name="castlabel" value="true" />
                     <include>Defs_InfoList_OnClick</include>
                     <include>Defs_InfoList_OnBack</include>
                     <movement>3</movement>
@@ -180,11 +182,11 @@
                 </include>
                 <!-- List 03 -->
                 <include content="Info_Widget_Poster">
-                    <param name="includecondition" value="true" />
                     <param name="id" value="5003" />
                     <param name="groupid" value="5103" />
                     <param name="label" value="Movies as Crew Member" />
                     <param name="labelinclude" value="View_Cast_Job_Label" />
+                    <param name="castlabel" value="true" />
                     <include>Defs_InfoList_OnClick</include>
                     <include>Defs_InfoList_OnBack</include>
                     <movement>3</movement>
@@ -192,11 +194,11 @@
                 </include>
                 <!-- List 05 -->
                 <include content="Info_Widget_Poster">
-                    <param name="includecondition" value="true" />
                     <param name="id" value="5005" />
                     <param name="groupid" value="5105" />
                     <param name="label" value="TvShows as Crew Member" />
                     <param name="labelinclude" value="View_Cast_Job_Label" />
+                    <param name="castlabel" value="true" />
                     <include>Defs_InfoList_OnClick</include>
                     <include>Defs_InfoList_OnBack</include>
                     <movement>3</movement>
@@ -204,7 +206,6 @@
                 </include>
                 <!-- List 06 -->
                 <include content="Info_Widget_Poster">
-                    <param name="includecondition" value="true" />
                     <param name="id" value="5006" />
                     <param name="groupid" value="5106" />
                     <param name="label" value="Images" />
@@ -301,7 +302,6 @@
                 <onleft>Left</onleft>
                 <onright>SetFocus(50)</onright>
                 <onright>Right</onright>
-                <visible>!Skin.HasSetting(DisableExtendedInfo)</visible>
             </control>
         </control>
         <include content="Viewtype_Poster">
@@ -317,13 +317,12 @@
             <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container(50).NumItems,0) | Container(50).IsUpdating">Conditional</animation>
             <nested />
             <movement>3</movement>
-            <onfocus condition="!Skin.HasSetting(DisableExtendedInfo)">SetFocus(5000)</onfocus>
+            <onfocus>SetFocus(5000)</onfocus>
             <onback condition="Skin.HasSetting(DisableExtendedInfo)">SetFocus(5999)</onback>
             <onback>SetFocus(5000)</onback>
             <onback>300</onback>
         </include>
         <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListCrew)" />
             <param name="id" value="5001" />
             <param name="groupid" value="5101" />
             <param name="label" value="$VAR[Label_Info_Title,Cast of ,]" />
@@ -338,25 +337,8 @@
         </include>
     </include>
 
-    <include name="DialogVideoInfo_Widget_OnlineCast">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListCrew)" />
-            <param name="id" value="5000" />
-            <param name="groupid" value="5100" />
-            <param name="label" value="$VAR[Label_Info_Title,Cast of ,]" />
-            <param name="castlabel" value="true" />
-            <param name="label2" value="ListItem.Property(character)" />
-            <param name="hideisupdating" value="true" />
-            <movement>3</movement>
-            <include>Defs_InfoList_OnClick</include>
-            <include>Defs_InfoList_OnBack</include>
-            <content limit="25" target="videos">$VAR[Info_CastMembers]</content>
-        </include>
-    </include>
-
     <include name="DialogVideoInfo_Widget_Crew">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListCrew)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListCrew)" >
             <param name="id" value="5050" />
             <param name="groupid" value="5150" />
             <param name="label" value="$VAR[Label_Info_Title,Crew of ,]" />
@@ -372,7 +354,6 @@
 
     <include name="DialogVideoInfo_Widget_Collection">
         <include content="Info_Widget_Poster">
-            <param name="includecondition" value="true" />
             <param name="id" value="5002" />
             <param name="groupid" value="5102" />
             <param name="label" value="$VAR[Label_SetName,$LOCALIZE[31057] ,]" />
@@ -405,8 +386,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Director">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListDirector)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListDirector)" >
             <param name="id" value="5004" />
             <param name="groupid" value="5104" />
             <param name="visible" value="!String.IsEmpty(ListItem.Director)" />
@@ -420,8 +400,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Studio">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListStudio)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListStudio)" >
             <param name="id" value="5005" />
             <param name="groupid" value="5105" />
             <param name="visible" value="!String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.Studio.1.TMDB_ID))" />
@@ -436,8 +415,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Recommended">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListRecommended)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListRecommended)" >
             <param name="id" value="5006" />
             <param name="groupid" value="5106" />
             <param name="label" value="Recommended" />
@@ -450,8 +428,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Similar">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListSimilar)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListSimilar)" >
             <param name="id" value="5007" />
             <param name="groupid" value="5107" />
             <param name="label" value="$VAR[Label_Info_Title,$LOCALIZE[31051] ,]" />
@@ -464,8 +441,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Year">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListYear)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListYear)" >
             <param name="id" value="5008" />
             <param name="groupid" value="5108" />
             <param name="visible" value="!String.IsEmpty(ListItem.Year)" />
@@ -480,8 +456,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Genre">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListGenre)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListGenre)" >
             <param name="id" value="5009" />
             <param name="groupid" value="5109" />
             <param name="visible" value="!String.IsEmpty(ListItem.Genre)" />
@@ -496,8 +471,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_CastStarsIn">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListCastFeature)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListCastFeature)" >
             <param name="id" value="5010" />
             <param name="groupid" value="5110" />
             <param name="visible" value="String.IsEqual(ListItem.DBType,movie) + Integer.IsGreater(Container(50).NumItems,0)" />
@@ -512,8 +486,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Youtube">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="System.HasAddon(plugin.video.youtube) + !Skin.HasSetting(DisableInfoListYouTube)" />
+        <include content="Info_Widget_Poster" condition="System.HasAddon(plugin.video.youtube) + !Skin.HasSetting(DisableInfoListYouTube)" >
             <param name="id" value="5011" />
             <param name="groupid" value="5111" />
             <param name="label" value="$LOCALIZE[31141]" />
@@ -533,8 +506,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Keywords">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListKeywords)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListKeywords)" >
             <param name="id" value="5012" />
             <param name="groupid" value="5112" />
             <param name="label" value="Keywords" />
@@ -551,8 +523,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_Posters">
-        <include content="Info_Widget_Poster">
-            <param name="includecondition" value="!Skin.HasSetting(DisableInfoListPosters)" />
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListPosters)" >
             <param name="id" value="5099" />
             <param name="groupid" value="5199" />
             <param name="label" value="Posters" />
@@ -566,7 +537,7 @@
     </include>
 
     <include name="DialogVideoInfo_Widget_ImageGallery">
-        <include content="Info_Widget_Poster">
+        <include content="Info_Widget_Poster" condition="!Skin.HasSetting(DisableInfoListFanart)" >
             <param name="id" value="6000" />
             <param name="groupid" value="6100" />
             <param name="label" value="Gallery" />
@@ -623,14 +594,14 @@
                         <param name="align" value="left" />
                     </include>
                     <include content="DialogVideoInfo_Widget_Details_Label">
-                        <param name="label" value="Budget" />
-                        <param name="infolabel" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.Budget)]" />
-                        <param name="visible" value="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Budget))" />
+                        <param name="label" value="Genre" />
+                        <param name="infolabel" value="$INFO[ListItem.Genre]" />
+                        <param name="visible" value="!String.IsEmpty(ListItem.Genre)" />
                         <param name="align" value="left" />
                     </include>
                     <include content="DialogVideoInfo_Widget_Details_Label">
-                        <param name="label" value="Revenue" />
-                        <param name="infolabel" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.Revenue)]" />
+                        <param name="label" value="Revenue / Budget" />
+                        <param name="infolabel" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.Revenue)]$INFO[Window(Home).Property(TMDbHelper.ListItem.Budget), from ,]" />
                         <param name="visible" value="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Revenue))" />
                         <param name="align" value="left" />
                     </include>
