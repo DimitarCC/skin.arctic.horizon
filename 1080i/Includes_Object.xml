@@ -785,6 +785,7 @@
                 <itemgap>0</itemgap>
                 <left>0</left>
                 <right>0</right>
+                <top>20</top>
                 <control type="image">
                     <top>10</top>
                     <width>37</width>

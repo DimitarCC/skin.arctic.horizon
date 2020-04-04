@@ -47,6 +47,7 @@
                         <left>15</left>
                         <width>auto</width>
                         <height>24</height>
+                        <label>$PARAM[label]</label>
                         <visible>!String.Contains(Container($PARAM[id]).FolderPath,/sets/)</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumAllItems,0) | Container($PARAM[id]).IsUpdating</visible>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -84,7 +85,6 @@
                         <height>24</height>
                         <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumAllItems,0) + !Container($PARAM[id]).IsUpdating</visible>
-                        <visible>$PARAM[showtitle]</visible>
                     </control>
                     <control type="label">
                         <top>17</top>

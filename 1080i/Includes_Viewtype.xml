@@ -14,8 +14,8 @@
                         <visible>!Integer.IsEqual(Container.NumAllItems,0)</visible>
                         <include content="View_Info_Grouplist">
                             <param name="container" value="Container." />
-                            <top>-45</top>
-                            <height>310</height>
+                            <top>-65</top>
+                            <height>350</height>
                             <visible>!Control.HasFocus(530)</visible>
                             <visible>!Control.IsVisible(56)</visible>
                             <visible>![Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(520)]</visible>
@@ -24,8 +24,8 @@
                         <include content="View_Info_Grouplist">
                             <param name="container" value="Container." />
                             <param name="visible-details" value="false" />
-                            <top>-45</top>
-                            <height>310</height>
+                            <top>-65</top>
+                            <height>350</height>
                             <visible>[Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(520)]</visible>
                             <visible>!Control.IsVisible(56)</visible>
                             <include>Viewtype_Info_Right</include>

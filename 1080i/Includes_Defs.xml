@@ -359,7 +359,7 @@
         <orientation>horizontal</orientation>
         <usecontrolcoords>true</usecontrolcoords>
         <itemgap>-10</itemgap>
-        <bottom>400</bottom>
+        <bottom>390</bottom>
     </include>
 
     <variable name="Defs_VideoInfo_Extras">
