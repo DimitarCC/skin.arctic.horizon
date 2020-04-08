@@ -12,7 +12,7 @@
             <control type="grouplist">
                 <orientation>vertical</orientation>
                 <usecontrolcoords>true</usecontrolcoords>
-                <top>-20</top>
+                <top>-65</top>
                 <itemgap>0</itemgap>
                 <include content="Object_Info_Title">
                     <param name="label" value="$PARAM[title]" />
