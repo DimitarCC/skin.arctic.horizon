@@ -4,6 +4,23 @@
     <include name="Viewtype_Info_Right"><right>700</right></include>
     <include name="Viewtype_Info_Right_FixedHome"><right>560</right></include>
     <include name="Viewtypes">
+        <control type="list" id="56560">
+            <include>Defs_Offscreen</include>
+            <orientation>horizontal</orientation>
+            <visible>Control.IsVisible(53) | Control.Isvisible(56)</visible>
+            <itemlayout />
+            <focusedlayout />
+            <content>
+                <include content="Object_56560_Item">
+                    <param name="id" value="530" />
+                    <visible>Control.IsVisible(53)</visible>
+                </include>
+                <include content="Object_56560_Item">
+                    <param name="id" value="560" />
+                    <visible>Control.IsVisible(56)</visible>
+                </include>
+            </content>
+        </control>
         <include content="Viewtype_Main">
             <control type="group">
                 <visible allowhiddenfocus="true">!$EXP[Exp_CommonAnimation]</visible>
@@ -26,6 +43,8 @@
                             <param name="visible-details" value="false" />
                             <top>-65</top>
                             <height>350</height>
+                            <param name="infoline-label" value="$VAR[Label_Home_InfoLine]" />
+                            <param name="infoline-image" value="$VAR[Image_Home_VideoQuality]" />
                             <visible>[Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(55) | Control.IsVisible(520)]</visible>
                             <visible>!Control.IsVisible(56)</visible>
                             <include>Viewtype_Info_Right</include>
@@ -98,7 +117,7 @@
             </control>
             <include>Object_Scrollbars</include>
         </include>
-        <include>Topbar_Right</include>
+        <include condition="!Skin.HasSetting(DisableClock)">Topbar_Right</include>
         <include>Object_NowPlaying</include>
         <include>Viewtype_Options</include>
         <include>Object_PlotOverlay</include>
@@ -207,35 +226,6 @@
                 <param name="listanimation" value="false" />
             </include>
         </control>
-    </include>
-
-    <include name="Viewtype_SideMenu">
-        <include content="Viewtype_Panel">
-            <param name="width" value="450" />
-            <param name="background" value="false" />
-            <control type="group">
-                <top>view_top</top>
-                <left>-450</left>
-                <width>450</width>
-                <animation effect="fade" start="100" end="0" condition="Window.IsVisible(DialogSettings.xml)">Conditional</animation>
-                <animation effect="slide" end="450" start="0" reversible="false" condition="Control.HasFocus(9000)">Conditional</animation>
-                <animation effect="slide" end="0" start="450" delay="400" time="1" reversible="false" condition="!Control.HasFocus(9000)">Conditional</animation>
-                <include content="Home_Menu_Header">
-                    <param name="label" value="Options" />
-                    <param name="icon" value="special://skin/extras/icons/playlist.png" />
-                    <param name="labelvisible" value="true" />
-                    <param name="icononly" value="false" />
-                </include>
-                <include content="Home_Menu">
-                    <param name="id" value="9000" />
-                    <param name="font" value="font_submenu" />
-                    <onright>50</onright>
-                    <onback>50</onback>
-                    <onleft>50</onleft>
-                    <include>Items_View</include>
-                </include>
-            </control>
-        </include>
     </include>
 
     <include name="Viewtype_SlideID_Fade">
@@ -358,7 +348,7 @@
             <include>Object_PosterBack</include>
             <control type="group">
                 <include>Defs_Pad</include>
-                
+
                 <include condition="$PARAM[selectbox]" content="View_Selectbox">
                     <param name="focusbounce" value="true" />
                     <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -385,7 +375,7 @@
                     <param name="visible" value="$PARAM[castlabel]" />
                     <param name="diffuse" value="$PARAM[diffuse]" />
                 </include>
-                
+
                 <!-- Watched Overlay and Selectbox -->
                 <include condition="!Skin.HasSetting(DisableWatchedOverlay)">View_WatchedOverlay</include>
                 <include condition="$PARAM[selectbox]" content="View_Selectbox">
@@ -736,7 +726,7 @@
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                     </include>
                 </control>
-                
+
                 <!-- Watched Overlay and Selectbox -->
                 <include condition="$PARAM[textpanel] + !Skin.HasSetting(DisableWatchedOverlay)">View_WatchedOverlay</include>
                 <include condition="$PARAM[selectbox] + $PARAM[textpanel]" content="View_Selectbox">
@@ -1101,7 +1091,7 @@
                         <param name="selected" value="String.IsEqual(Window.Property(5090Action),Queue)" />
                     </include>
                 </include>
-                
+
                 <control type="group">
                     <include>Defs_Pad</include>
                     <!-- Textlabel -->
@@ -1152,7 +1142,7 @@
                         <width>32</width>
                         <height>32</height>
                         <texture colordiffuse="$PARAM[fgcolor_90]">$VAR[Image_Overlay_List]</texture>
-                    </control>                
+                    </control>
                     <control type="label">
                         <animation effect="slide" end="-40" condition="!String.IsEqual(ListItem.DBType,episode)">Conditional</animation>
                         <animation effect="slide" end="-30" condition="String.IsEqual(ListItem.DBType,episode) + !Integer.IsGreater(ListItem.Season,999)">Conditional</animation>
@@ -1445,7 +1435,7 @@
                 </include>
             </control>
         </include>
-        <include>Topbar_Right</include>
+        <include condition="!Skin.HasSetting(DisableClock)">Topbar_Right</include>
     </include>
 </includes>
 

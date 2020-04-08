@@ -19,21 +19,22 @@
         <param name="altid" default="999999" />
         <param name="spinner-visible" default="true" />
         <param name="widget-type" default="infowidgets" />
+        <param name="issubmenu" default="false" />
         <definition>
             <control type="group" id="$PARAM[groupid]">
                 <nested />
                 <top>$PARAM[widget-type]_label_top</top>
                 <height>$PARAM[widget-type]_item_top</height>
-                <visible>Integer.IsGreater(Container($PARAM[id]).NumAllItems,0) | Container($PARAM[id]).IsUpdating</visible>
+                <visible>Integer.IsGreater(Container($PARAM[id]).NumAllItems,0) | Container($PARAM[id]).IsUpdating | $PARAM[issubmenu]</visible>
                 <control type="group">
                     <top>$PARAM[widget-type]_item_top</top>
                     <height>item_cast_height</height>
-                    <include content="Defs_BusySpinner">
+                    <include content="Defs_BusySpinner" condition="$PARAM[spinner-visible]">
                         <param name="label" value="$LOCALIZE[31428]..." />
                         <param name="textcolor" value="main_fg_70" />
                     </include>
                     <visible>Container($PARAM[id]).IsUpdating</visible>
-                    <visible>$PARAM[spinner-visible]</visible>
+                    <visible>Integer.IsEqual(Container($PARAM[id]).NumAllItems,0)</visible>
                 </control>
                 <control type="grouplist" description="Focused List">
                     <right>100</right>
@@ -400,7 +401,7 @@
         <param name="gradient" default="true" />
         <definition>
             <control type="group">
-                
+
                 <animation type="Focus" condition="$PARAM[focusbounce]">
                     <effect type="zoom" start="96.5" end="100" time="150" tween="sine" easing="inout" center="auto"/>
                     <effect type="fade" start="20" end="100" time="150" tween="back" easing="out"/>

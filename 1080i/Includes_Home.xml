@@ -118,6 +118,8 @@
                             <onleft>SetFocus($INFO[Window(Home).Property(CurrentWidget)],9999,absolute)</onleft>
                             <include>skinshortcuts-template-onmovement</include>
                             <onright>ClearProperty(WidgetMovement)</onright>
+                            <oninfo>ClearProperty(WidgetFocus)</oninfo>
+                            <oninfo>SetFocus(303,0,absolute)</oninfo>
                             <onclick>ClearProperty(WidgetMovement)</onclick>
                             <onclick condition="!String.IsEmpty(Window.Property(WidgetFocus))">SetFocus(3000)</onclick>
                             <onclick condition="String.IsEmpty(Window.Property(WidgetFocus))">SetProperty(301Click,1)</onclick>
@@ -187,7 +189,7 @@
                             </control>
                         </control>
                     </control>
-                    
+
                 </control>
                 <include>Topbar_Left</include>
             </control>
@@ -195,7 +197,7 @@
         </include>
 
         <!-- Clock -->
-        <include>Topbar_Right</include>
+        <include condition="!Skin.HasSetting(DisableClock)">Topbar_Right</include>
     </include>
 
     <include name="Home_Hub_Showcase">
@@ -217,7 +219,7 @@
                 <include>Animation_FadeInOut</include>
                 <include>Global_Background</include>
             </control>
-            
+
             <control type="group">
 
                 <animation effect="slide" start="0" end="0,320" condition="Integer.IsEqual(Container(302).NumItems,0)">Conditional</animation>
@@ -506,7 +508,7 @@
                     <param name="condition" value="!Control.HasFocus(3001) + System.IdleTime(1) + !Skin.HasSetting(DisableAutoScrollWidgets)" />
                 </include>
             </control>
-            
+
             <include content="Home_Widget_Fullscreen_Info">
                 <param name="id" value="$PARAM[id]" />
             </include>
@@ -546,14 +548,14 @@
                     <height>1</height>
                     <left>41</left>
                     <right>41</right>
-                    <texture colordiffuse="dialog_fg_30">common/white.png</texture>
+                    <texture colordiffuse="$VAR[Defs_HomeMenu_Line_BG]">common/white.png</texture>
                 </control>
                 <control type="image">
                     <top>79</top>
                     <height>1</height>
                     <left>41</left>
                     <right>41</right>
-                    <texture colordiffuse="dialog_bg_30">common/white.png</texture>
+                    <texture colordiffuse="$VAR[Defs_HomeMenu_Line_FG]">common/white.png</texture>
                 </control>
                 <control type="image">
                     <left>40</left>
@@ -561,7 +563,7 @@
                     <width>item_list_height</width>
                     <height>item_list_height</height>
                     <bordersize>8</bordersize>
-                    <texture background="true" colordiffuse="dialog_fg_70">$PARAM[icon]</texture>
+                    <texture background="true" colordiffuse="$VAR[Defs_HomeMenu_Icon]">$PARAM[icon]</texture>
                 </control>
             </control>
         </definition>
@@ -582,7 +584,7 @@
                             <width>item_list_height</width>
                             <height>item_list_height</height>
                             <bordersize>8</bordersize>
-                            <texture background="true" colordiffuse="dialog_fg_70">$INFO[ListItem.Icon]</texture>
+                            <texture background="true" colordiffuse="$VAR[Defs_HomeMenu_Icon]">$INFO[ListItem.Icon]</texture>
                         </control>
                     </control>
                 </itemlayout>
@@ -594,7 +596,7 @@
                             <width>item_list_height</width>
                             <height>item_list_height</height>
                             <bordersize>8</bordersize>
-                            <texture background="true" colordiffuse="dialog_fg_70">$INFO[ListItem.Icon]</texture>
+                            <texture background="true" colordiffuse="$VAR[Defs_HomeMenu_Icon]">$INFO[ListItem.Icon]</texture>
                         </control>
                     </control>
                     <control type="group">
@@ -626,6 +628,7 @@
                 <param name="width" value="160" />
                 <param name="background" value="false" />
                 <param name="logohastext" value="false" />
+                <param name="colordiffuse" value="$VAR[Defs_HomeMenu_Background]" />
                 <control type="group">
                     <top>view_top</top>
                     <include content="Home_Menu_Header">
@@ -637,7 +640,6 @@
                         <param name="font" value="font_mainmenu" />
                         <onfocus>ClearProperty(TMDbHelper.WidgetContainer,Home)</onfocus>
                         <onback>3000</onback>
-                        <onleft>SetFocus(302)</onleft>
                         <onfocus>ClearProperty(WidgetMovement)</onfocus>
                         <onfocus>ClearProperty(WidgetFocus)</onfocus>
                         <onfocus condition="String.IsEmpty(Window.Property(301Click))">SetFocus(3992)</onfocus>

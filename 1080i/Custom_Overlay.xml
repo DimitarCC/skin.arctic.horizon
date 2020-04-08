@@ -951,7 +951,7 @@
                 <shadowcolor>ff000000</shadowcolor>
                 <align>right</align>
                 <label>$INFO[System.CurrentControl][CR][COLOR=FF00FF00]$INFO[System.CurrentWindow][/COLOR]</label>
-                
+
             </control>
 
             <control type="label">
@@ -963,7 +963,7 @@
                 <shadowcolor>ff000000</shadowcolor>
                 <align>right</align>
                 <label>$INFO[ListItem.FolderPath]</label>
-                
+
             </control>
 
             <control type="textbox">
@@ -976,7 +976,7 @@
                 <shadowcolor>ff000000</shadowcolor>
                 <align>left</align>
                 <label>$INFO[Window(Home).Property(TMDBHelper.ListItem.tvshow.tvdb_id)]$INFO[Window(Home).Property(TMDBHelper.ListItem.tvdb_id)]</label>
-                
+
             </control>
 
             <!-- Path label -->
@@ -988,7 +988,7 @@
                 <height>500</height>
                 <textcolor>FFFFFF00</textcolor>
                 <shadowcolor>ff000000</shadowcolor>
-                
+
                 <font>font_tiny</font>
                 <shadowcolor>ff000000</shadowcolor>
                 <align>right</align>
@@ -996,9 +996,12 @@
 
                 <label>[COLOR=FF00FF00]$INFO[System.CurrentControlID,ID  ][/COLOR]
                     $INFO[Container.Content(),[COLOR=FFFF00FF]CONTENT  [/COLOR],]$INFO[ListItem.DBType,[COLOR=FFFF00FF]  DBTYPE  [/COLOR],]$INFO[ListItem.Property(dbtype),[COLOR=FFFF00FF]  PROP_DBTYPE  [/COLOR],]$INFO[Container.SortMethod,[COLOR=FFFF00FF]  SORT  [/COLOR],]
-                    $INFO[ListItem.Label,[COLOR=FFFF00FF]  LABEL  [/COLOR],]$INFO[ListItem.Title,[COLOR=FFFF00FF]  TITLE  [/COLOR],]
-                    $INFO[Window(Home).Property(TMDbHelper.ListItem.Label),[COLOR=FFFF00FF]  SM.LABEL  [/COLOR],]$INFO[Window(Home).Property(TMDbHelper.ListItem.Title),[COLOR=FFFF00FF]  SM.TITLE  [/COLOR],]
-                    $INFO[ListItem.Rating,[COLOR=FFFF00FF]  RATING  [/COLOR],]$INFO[ListItem.UserRating,[COLOR=FFFF00FF]  USER RATING  [/COLOR],]
+                    $INFO[ListItem.Property(Container.Info),[COLOR=FFFF00FF]  C.INFO  [/COLOR],]$INFO[ListItem.Property(Container.Type),[COLOR=FFFF00FF]  C.TYPE  [/COLOR],]$INFO[ListItem.Property(Item.Info),[COLOR=FFFF00FF]  I.INFO  [/COLOR],]$INFO[ListItem.Property(Item.Type),[COLOR=FFFF00FF]  I.TYPE  [/COLOR],]
+                    $INFO[ListItem.Label,[COLOR=FFFF00FF]  LABEL  [/COLOR],]
+                    $INFO[ListItem.Title,[COLOR=FFFF00FF]  TITLE  [/COLOR],]
+                    $INFO[Window(Home).Property(TMDbHelper.ListItem.Label),[COLOR=FFFF00FF]  SM.LABEL  [/COLOR],]
+                    $INFO[Window(Home).Property(TMDbHelper.ListItem.Title),[COLOR=FFFF00FF]  SM.TITLE  [/COLOR],]
+                    $INFO[Window(Home).Property(TMDbHelper.ListItem.Oscar_Wins),[COLOR=FFFF00FF]  OSCARS_W  [/COLOR],]$INFO[Window(Home).Property(TMDbHelper.ListItem.Oscar_Nominations),[COLOR=FFFF00FF]  OSCARS_N  [/COLOR],]$INFO[Window(Home).Property(TMDbHelper.ListItem.Award_Wins),[COLOR=FFFF00FF]  AWARDS_W  [/COLOR],]$INFO[Window(Home).Property(TMDbHelper.ListItem.Award_Nominations),[COLOR=FFFF00FF]  AWARDS_N  [/COLOR],]$INFO[ListItem.Rating,[COLOR=FFFF00FF]  RATING  [/COLOR],]$INFO[ListItem.UserRating,[COLOR=FFFF00FF]  USER RATING  [/COLOR],]
                      $INFO[ListItem.Duration,[COLOR=FFFF00FF]  DURATION  [/COLOR],]
                      $INFO[Window(Home).Property(TMDBHelper.ListItem.Studio.1.TMDB_ID),[COLOR=FFFF00FF]  INFO  [/COLOR],]
                     $INFO[Window(Home).Property(TMDbHelper.IsUpdating),[COLOR=FFFF00FF]  SM.ISUPDATING  [/COLOR],]
@@ -1009,7 +1012,7 @@
                     $INFO[ListItem.Season,[COLOR=FFFF00FF]SEASON  [/COLOR],]$INFO[ListItem.Episode,[COLOR=FFFF00FF]  EPISODE  [/COLOR],]
                     $INFO[ListItem.Property(UnWatchedEpisodes),[COLOR=FFFF00FF]U  [/COLOR],]$INFO[ListItem.Property(WatchedEpisodes),  [COLOR=FFFF00FF]W  [/COLOR],]$INFO[ListItem.PlayCount,  [COLOR=FFFF00FF]P  [/COLOR],]$INFO[ListItem.LastPlayed,   [COLOR=FFFF00FF]LP  [/COLOR],]$INFO[ListItem.Overlay,  [COLOR=FFFF00FF]O  [/COLOR],]
                     $INFO[Container.PluginName,[COLOR=FFFF00FF]PLUGIN  [/COLOR],]$INFO[Container.PluginCategory,  [COLOR=FFFF00FF]NAME  [/COLOR],]</label>
-                
+
             </control>
 
             <control type="label">
@@ -1024,7 +1027,7 @@
                 <align>left</align>
                 <aligny>center</aligny>
                 <label>$INFO[Window(Home).Property(TMDbHelper.Path.Current)][CR]$INFO[Window(Home).Property(TMDbHelper.Position),Position: ]$INFO[Window(Home).Property(TMDbHelper.Locked),  Locked: ]</label>
-                
+
             </control>
 
             <control type="label">
@@ -1039,7 +1042,7 @@
                 <align>left</align>
                 <aligny>center</aligny>
                 <label>[COLOR=FF00FF00]$INFO[Container.FolderName,, - ][/COLOR]$INFO[Container.FolderPath]</label>
-                
+
             </control>
         </control>
 

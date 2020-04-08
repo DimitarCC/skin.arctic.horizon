@@ -28,9 +28,9 @@
                 </include>
                 <include content="Object_Info_Title">
                     <param name="font" value="font_small_bold" />
-                    <param name="titleheight" value="10" />
+                    <param name="titleheight" value="6" />
                     <param name="label" value="$INFO[$PARAM[container]ListItem.Title]" />
-                    <top>30</top>
+                    <top>34</top>
                     <visible>String.IsEqual($PARAM[container]ListItem.DBType,episode)</visible>
                     <visible>$PARAM[visible-details]</visible>
                 </include>
@@ -43,7 +43,7 @@
                 </include>
                 <nested />
             </control>
-            
+
         </definition>
     </include>
 
@@ -58,13 +58,13 @@
     <include name="View_Info_Buttons">
         <control type="grouplist" id="$PARAM[grouplistid]">
             <include>Defs_ButtonList</include>
-            <include content="Object_Info_Button" description="Options">
+            <include content="Object_Info_Button" description="Addon Settings">
                 <param name="id" value="3109" />
                 <param name="groupid" value="3009" />
                 <param name="label" value="$LOCALIZE[5]" />
                 <param name="icon" value="special://skin/extras/icons/settings.png" />
                 <param name="ondown" value="50" />
-                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + String.IsEqual(ListItem.Label2,$LOCALIZE[449]) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml)" />
+                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + String.IsEqual(ListItem.Label2,$LOCALIZE[449]) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml) + !Skin.HasSetting(KioskMode)" />
                 <onclick>Addon.OpenSettings($INFO[ListItem.Property(Addon.ID)])</onclick>
             </include>
             <include content="Object_Info_Button" description="Install">
@@ -73,7 +73,7 @@
                 <param name="label" value="$LOCALIZE[24038]" />
                 <param name="icon" value="special://skin/extras/icons/download.png" />
                 <param name="ondown" value="50" />
-                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + !String.IsEqual(ListItem.Label2,$LOCALIZE[449]) + !String.IsEqual(ListItem.Label2,$LOCALIZE[24023]) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml)" />
+                <param name="visible" value="!String.IsEmpty(ListItem.Property(Addon.ID)) + !String.IsEqual(ListItem.Label2,$LOCALIZE[449]) + !String.IsEqual(ListItem.Label2,$LOCALIZE[24023]) + !String.IsEqual(Container.FolderPath,addons://repos/) + Window.IsVisible(AddonBrowser.xml) + !Skin.HasSetting(KioskMode)" />
                 <onclick>InstallAddon($INFO[ListItem.Property(Addon.ID)])</onclick>
             </include>
             <!-- <include content="Object_Info_Button" description="Play">
@@ -99,7 +99,7 @@
                 <onclick>SetFocus(50)</onclick>
                 <onclick>Action(Info)</onclick>
             </include>
-            
+
             <include content="Object_Info_Button" description="Trailer">
                 <param name="id" value="3105" />
                 <param name="groupid" value="3005" />
@@ -109,7 +109,7 @@
                 <param name="visible" value="!String.IsEmpty(ListItem.Trailer)" />
                 <onclick>PlayMedia($INFO[ListItem.Trailer])</onclick>
             </include>
-            
+
             <include content="Object_Info_Button" description="Similar">
                 <param name="id" value="3103" />
                 <param name="groupid" value="3003" />
@@ -122,7 +122,7 @@
                 <!-- <onclick>Container.Update($VAR[Info_Recommended])</onclick> -->
                 <!-- <onclick>ActivateWindow(1142)</onclick> -->
             </include>
-            
+
             <include content="Object_Info_Button" description="Overview">
                 <param name="id" value="3106" />
                 <param name="groupid" value="3006" />
@@ -142,7 +142,7 @@
                 <onclick>SetFocus(9000)</onclick>
             </include>
 
-            
+
             <nested />
         </control>
     </include>
