@@ -85,8 +85,8 @@
                 <param name="visible" value="[!ListItem.IsFolder | !String.IsEmpty(ListItem.Property(tmdb_id))] + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)]" />
                 <onclick>SetFocus(50)</onclick>
                 <onclick condition="!ListItem.IsFolder">Action(Play)</onclick>
-                <onclick condition="ListItem.IsFolder + !String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEqual(ListItem.DBType,movie)">RunPlugin(plugin://plugin.video.themoviedb.helper/?info=play&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;type=movie)</onclick>
-                <onclick condition="ListItem.IsFolder + !String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEqual(ListItem.DBType,episode)">RunPlugin(plugin://plugin.video.themoviedb.helper/?info=play&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;type=episode&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode])</onclick>
+                <onclick condition="ListItem.IsFolder + !String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEqual(ListItem.DBType,movie)">RunPlugin(plugin://plugin.video.skin.info.provider/?info=play&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;type=movie)</onclick>
+                <onclick condition="ListItem.IsFolder + !String.IsEmpty(ListItem.Property(tmdb_id)) + String.IsEqual(ListItem.DBType,episode)">RunPlugin(plugin://plugin.video.skin.info.provider/?info=play&amp;tmdb_id=$INFO[ListItem.Property(tmdb_id)]&amp;type=episode&amp;season=$INFO[ListItem.Season]&amp;episode=$INFO[ListItem.Episode])</onclick>
             </include> -->
 
             <include content="Object_Info_Button" description="Play">

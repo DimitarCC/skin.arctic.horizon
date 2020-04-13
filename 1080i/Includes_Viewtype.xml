@@ -237,7 +237,7 @@
         <onup condition="Control.IsVisible(300)">300</onup>
         <onup condition="!Control.IsVisible(300)">304</onup>
         <oninfo condition="ListItem.IsCollection">ActivateWindow(1140)</oninfo>
-        <oninfo condition="Container.Content(actors) | Container.Content(directors)">RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container.ListItem.Label],type=person,call_auto=1190)</oninfo>
+        <oninfo condition="Container.Content(actors) | Container.Content(directors)">RunScript(plugin.video.skin.info.provider,add_query=$INFO[Container.ListItem.Label],type=person,call_auto=1190)</oninfo>
         <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
         <ondown>60</ondown>
         <pagecontrol>60</pagecontrol>
@@ -1357,7 +1357,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=-1&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=-1&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Today">
                             <param name="id" value="5001" />
@@ -1366,7 +1366,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=0&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=0&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Tomorrow">
                             <param name="id" value="5002" />
@@ -1375,7 +1375,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=1&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=1&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day3">
                             <param name="id" value="5003" />
@@ -1384,7 +1384,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=2&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=2&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day4">
                             <param name="id" value="5004" />
@@ -1393,7 +1393,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=3&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=3&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day5">
                             <param name="id" value="5005" />
@@ -1402,7 +1402,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=4&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=4&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day6">
                             <param name="id" value="5006" />
@@ -1411,7 +1411,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=5&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=5&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day7">
                             <param name="id" value="5007" />
@@ -1420,7 +1420,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=6&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=6&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                         <include content="Info_Widget_Poster" description="Day8">
                             <param name="id" value="5008" />
@@ -1429,7 +1429,7 @@
                             <param name="viewtype-include" value="$PARAM[viewtype-include]" />
                             <param name="icon" value="$PARAM[icon]" />
                             <movement>$PARAM[movement]</movement>
-                            <content>plugin://plugin.video.themoviedb.helper/?info=$PARAM[info]&amp;startdate=7&amp;days=1&amp;widget=True&amp;type=episode</content>
+                            <content>plugin://plugin.video.skin.info.provider/?info=$PARAM[info]&amp;startdate=7&amp;days=1&amp;widget=True&amp;type=episode</content>
                         </include>
                     </include>
                 </include>

@@ -59,7 +59,10 @@
 
         <value condition="[String.StartsWith(ListItem.FolderPath,pvr://) | Window.IsVisible(DialogPVRInfo.xml)] + Control.HasFocus(9400) + [!String.IsEmpty(ListItem.ChannelName) | !String.IsEmpty(ListITem.StartTime)]">$INFO[ListItem.ChannelName,  |  [COLOR=main_fg_100],[/COLOR]]$VAR[Label_PVR_EpisodeName,  |  [COLOR=main_fg_100],[/COLOR]]$VAR[Label_PVR_EPGEventTitle,  |  [COLOR=main_fg_100],[/COLOR]]$INFO[ListItem.NextStartTime,  |  [COLOR=main_fg_100],[/COLOR]]$INFO[ListItem.NextEndTime,[COLOR=main_fg_100] - ,[/COLOR]]</value>
 
+        <value condition="ListItem.IsCollection">  |  [COLOR=main_fg_100]  ......................................[/COLOR]</value>
+
         <value>$INFO[System.Date,  |  [COLOR=main_fg_100],[/COLOR]]$INFO[Container.NumItems,  |  [COLOR=main_fg_100], $LOCALIZE[31025][/COLOR]]</value>
+        
     </variable>
 
     <variable name="Label_56560_PVR_EpisodeName">

@@ -807,11 +807,11 @@
                     </control>
                     <control type="radiobutton" id="19801">
                         <visible>Integer.IsEqual(Window.Property(CurrentFocus),9008)</visible>
-                        <label>plugin.video.themoviedb.helper</label>
-                        <label2>$INFO[System.AddonVersion(plugin.video.themoviedb.helper)]        </label2>
-                        <onclick>Addon.OpenSettings(plugin.video.themoviedb.helper)</onclick>
-                        <onclick condition="!System.HasAddon(plugin.video.themoviedb.helper)">InstallAddon(plugin.video.themoviedb.helper)</onclick>
-                        <selected>System.HasAddon(plugin.video.themoviedb.helper)</selected>
+                        <label>plugin.video.skin.info.provider</label>
+                        <label2>$INFO[System.AddonVersion(plugin.video.skin.info.provider)]        </label2>
+                        <onclick>Addon.OpenSettings(plugin.video.skin.info.provider)</onclick>
+                        <onclick condition="!System.HasAddon(plugin.video.skin.info.provider)">InstallAddon(plugin.video.skin.info.provider)</onclick>
+                        <selected>System.HasAddon(plugin.video.skin.info.provider)</selected>
                         <include>Defs_Settings_Button</include>
                     </control>
 
@@ -864,11 +864,11 @@
                     </control>
                     <!-- <control type="radiobutton" id="19809">
                         <visible>Integer.IsEqual(Window.Property(CurrentFocus),9008)</visible>
-                        <label>plugin.video.themoviedb.helper</label>
-                        <label2>$INFO[System.AddonVersion(plugin.video.themoviedb.helper)]        </label2>
-                        <onclick>Addon.OpenSettings(plugin.video.themoviedb.helper)</onclick>
-                        <onclick condition="!System.HasAddon(plugin.video.themoviedb.helper)">InstallAddon(plugin.video.themoviedb.helper)</onclick>
-                        <selected>System.HasAddon(plugin.video.themoviedb.helper)</selected>
+                        <label>plugin.video.skin.info.provider</label>
+                        <label2>$INFO[System.AddonVersion(plugin.video.skin.info.provider)]        </label2>
+                        <onclick>Addon.OpenSettings(plugin.video.skin.info.provider)</onclick>
+                        <onclick condition="!System.HasAddon(plugin.video.skin.info.provider)">InstallAddon(plugin.video.skin.info.provider)</onclick>
+                        <selected>System.HasAddon(plugin.video.skin.info.provider)</selected>
                         <include>Defs_Settings_Button</include>
                     </control> -->
                     <control type="radiobutton" id="19810">
