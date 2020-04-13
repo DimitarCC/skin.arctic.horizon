@@ -3,8 +3,8 @@
     <defaultcontrol always="true">4100</defaultcontrol>
     <onload>SetProperty(Header_Left_Text,Trending Lists)</onload>
     <onload>SetProperty(1139_SortBy,random,Home)</onload>
-    <onload>SetProperty(1139_FolderPath,plugin://plugin.video.themoviedb.helper/?fanarttv=True&amp;info=trakt_trendinglists&amp;nextpage=True&amp;type=both,Home)</onload>
-    <!-- <onload>SetProperty(1139_FolderPath,plugin://plugin.video.themoviedb.helper/?fanarttv=True&amp;info=genres&amp;nextpage=True&amp;type=movie&amp;widget=True,Home)</onload> -->
+    <onload>SetProperty(1139_FolderPath,plugin://plugin.video.skin.info.provider/?fanarttv=True&amp;info=trakt_trendinglists&amp;nextpage=True&amp;type=both,Home)</onload>
+    <!-- <onload>SetProperty(1139_FolderPath,plugin://plugin.video.skin.info.provider/?fanarttv=True&amp;info=genres&amp;nextpage=True&amp;type=movie&amp;widget=True,Home)</onload> -->
     <!-- <onload>SetProperty(1139_SortBy,label,Home)</onload> -->
     <controls>
         <control type="list" id="5001">
