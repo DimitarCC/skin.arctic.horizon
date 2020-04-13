@@ -6,7 +6,15 @@
         <control type="button" id="5"><include>Defs_Visible_Button</include></control>
         <control type="button" id="6"><include>Defs_Visible_Button</include></control>
         <control type="button" id="8"><include>Defs_Visible_Button</include></control>
+        <control type="button" id="9"><include>Defs_Visible_Button</include></control>
         <control type="button" id="10"><include>Defs_Visible_Button</include></control>
+
+        <include content="Object_Control" condition="Window.IsVisible(VideoFullScreen.xml)">
+            <param name="type" value="group" />
+            <include>Animation_FadeIn</include>
+            <include>Animation_FadeOut</include>
+            <include>Global_Background</include>
+        </include>
 
         <include content="DialogVideoInfo_Left">
             <param name="poster" value="false" />

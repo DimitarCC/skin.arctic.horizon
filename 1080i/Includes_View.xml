@@ -9,10 +9,27 @@
             <height>1</height>
             <orientation>horizontal</orientation>
             <ondown>5610</ondown>
+            <onfocus>ClearProperty(FocusWidget)</onfocus>
             <itemlayout width="1"/>
             <focusedlayout width="1"/>
             <include>Items_SubMenu</include>
         </control>
+    </include>
+
+    <include name="View_Random_Showcase_List">
+        <include content="Info_Widget_Poster">
+            <param name="id" value="30$PARAM[id]" />
+            <param name="groupid" value="31$PARAM[id]" />
+            <param name="label" value="$INFO[Container(5001).ListItem($PARAM[id]).Label]" />
+            <param name="viewtype-include" value="Viewtype_Poster" />
+            <param name="widget-type" value="widgets" />
+            <param name="issubmenu" value="true" />
+            <param name="showonupdate" value="true" />
+            <param name="visible" value="!String.IsEmpty(Container(5001).ListItem($PARAM[id]).FolderPath)" />
+            <animation effect="fade" start="100" end="0" condition="Container(30$PARAM[id]).IsUpdating">Conditional</animation>
+            <content target="videos">$INFO[Container(5001).ListItem($PARAM[id]).FolderPath]</content>
+            <nested />
+        </include>
     </include>
 
     <include name="View_Cast_Toplabel">
@@ -20,6 +37,7 @@
         <param name="spinner-visible" default="true" />
         <param name="widget-type" default="infowidgets" />
         <param name="issubmenu" default="false" />
+        <param name="showonupdate" default="false" />
         <definition>
             <control type="group" id="$PARAM[groupid]">
                 <nested />
@@ -27,14 +45,14 @@
                 <height>$PARAM[widget-type]_item_top</height>
                 <visible>Integer.IsGreater(Container($PARAM[id]).NumAllItems,0) | Container($PARAM[id]).IsUpdating | $PARAM[issubmenu]</visible>
                 <control type="group">
-                    <top>$PARAM[widget-type]_item_top</top>
+                    <top>50</top>
                     <height>item_cast_height</height>
                     <include content="Defs_BusySpinner" condition="$PARAM[spinner-visible]">
                         <param name="label" value="$LOCALIZE[31428]..." />
                         <param name="textcolor" value="main_fg_70" />
                     </include>
                     <visible>Container($PARAM[id]).IsUpdating</visible>
-                    <visible>Integer.IsEqual(Container($PARAM[id]).NumAllItems,0)</visible>
+                    <visible>Integer.IsEqual(Container($PARAM[id]).NumAllItems,0) | $PARAM[showonupdate]</visible>
                 </control>
                 <control type="grouplist" description="Focused List">
                     <right>100</right>
@@ -305,7 +323,7 @@
                 <align>center</align>
                 <textcolor>ffededed</textcolor>
                 <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
-                <include>View_UnwatchedEpisodes_Visible</include>
+                <visible>Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
             </control>
         </control>
     </include>
@@ -337,14 +355,9 @@
                 <align>center</align>
                 <textcolor>panel_bg</textcolor>
                 <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
-                <include>View_UnwatchedEpisodes_Visible</include>
+                <visible>Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
             </control>
         </control>
-    </include>
-
-    <include name="View_UnwatchedEpisodes_Visible">
-        <visible>Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
-        <visible>!ListItem.IsCollection</visible>
     </include>
 
     <include name="View_List_Selectbox">

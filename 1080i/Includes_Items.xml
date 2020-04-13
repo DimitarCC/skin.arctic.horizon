@@ -605,6 +605,28 @@
         </content>
     </include>
 
+    <include name="Items_Random">
+        <content>
+            <item>
+                <label>Previous Page</label>
+                <onclick>Control.Move(5001,-10)</onclick>
+                <onclick>SetFocus(3009)</onclick>
+                <visible>String.IsEqual(Window.Property(Direction),onup)</visible>
+            </item>
+            <item>
+                <label>Next Page</label>
+                <onclick>Control.Move(5001,10)</onclick>
+                <onclick>SetFocus(3000)</onclick>
+                <visible>String.IsEqual(Window.Property(Direction),ondown)</visible>
+            </item>
+            <item>
+                <label>Cancel</label>
+                <onclick>SetFocus(4100)</onclick>
+                <visible>String.IsEmpty(Window.Property(Direction))</visible>
+            </item>
+        </content>
+    </include>
+
     <include name="Items_View">
         <content>
             <item>
@@ -745,7 +767,7 @@
                 <icon>special://skin/extras/icons/download.png</icon>
                 <label>$LOCALIZE[21452]</label>
                 <onclick>ActivateWindow(addonbrowser,addons://more/video/,return)</onclick>
-                <visible>Container.Content(addons) + !String.StartsWith(Container.FolderPath,addons://)</visible>
+                <visible>Container.Content(addons) + !Window.IsVisible(AddonBrowser.xml)</visible>
                 <visible>!Skin.HasSetting(KioskMode)</visible>
             </item>
         </content>

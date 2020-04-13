@@ -2,38 +2,39 @@
 <includes>
     <include name="Object_56560_Item">
         <item>
-            <property name="Label2">$INFO[Container($PARAM[id]).ListItem.Label2]</property>
-            <property name="DBType">$INFO[Container($PARAM[id]).ListItem.DBType]</property>
-            <property name="FolderPath">$INFO[Container($PARAM[id]).ListItem.FolderPath]</property>
-            <property name="MPAA">$INFO[Container($PARAM[id]).ListItem.MPAA]</property>
-            <property name="Year">$INFO[Container($PARAM[id]).ListItem.Year]</property>
-            <property name="EndTime">$INFO[Container($PARAM[id]).ListItem.EndTime]</property>
-            <property name="Season">$INFO[Container($PARAM[id]).ListItem.Season]</property>
-            <property name="Episode">$INFO[Container($PARAM[id]).ListItem.Episode]</property>
-            <property name="ChannelName">$INFO[Container($PARAM[id]).ListItem.ChannelName]</property>
-            <property name="StartTime">$INFO[Container($PARAM[id]).ListItem.StartTime]</property>
-            <property name="NextStartTime">$INFO[Container($PARAM[id]).ListItem.NextStartTime]</property>
-            <property name="NextEndTime">$INFO[Container($PARAM[id]).ListItem.NextEndTime]</property>
-            <property name="EpisodeName">$INFO[Container($PARAM[id]).ListItem.EpisodeName]</property>
-            <property name="EPGEventTitle">$INFO[Container($PARAM[id]).ListItem.EPGEventTitle]</property>
-            <property name="Title">$INFO[Container($PARAM[id]).ListItem.Title]</property>
-            <property name="Plot">$INFO[Container($PARAM[id]).ListItem.Plot]</property>
-            <property name="TvShowTitle">$INFO[Container($PARAM[id]).ListItem.TvShowTitle]</property>
-            <property name="AddonVersion">$INFO[Container($PARAM[id]).ListItem.Property(AddonVersion)]</property>
-            <property name="AddonType">$INFO[Container($PARAM[id]).ListItem.Property(AddonType)]</property>
-            <property name="AddonCreator">$INFO[Container($PARAM[id]).ListItem.Property(AddonCreator)]</property>
-            <property name="AlbumArtist">$INFO[Container($PARAM[id]).ListItem.AlbumArtist]</property>
-            <property name="Album_Label">$INFO[Container($PARAM[id]).ListItem.Property(Album_Label)]</property>
-            <property name="Artist_Genre">$INFO[Container($PARAM[id]).ListItem.Property(Artist_Genre)]</property>
-            <property name="Artist_YearsActive">$INFO[Container($PARAM[id]).ListItem.Property(Artist_YearsActive)]</property>
-            <property name="Artist_Born">$INFO[Container($PARAM[id]).ListItem.Property(Artist_Born)]</property>
-            <property name="WatchedEpisodes">$INFO[Container($PARAM[id]).ListItem.Property(WatchedEpisodes)]</property>
-            <property name="TotalEpisodes">$INFO[Container($PARAM[id]).ListItem.Property(TotalEpisodes)]</property>
-            <property name="VideoResolution">$INFO[Container($PARAM[id]).ListItem.VideoResolution]</property>
-            <property name="IsCollection">$INFO[Container($PARAM[id]).ListItem.IsCollection]</property>
-            <property name="Duration_H">$INFO[Container($PARAM[id]).ListItem.Duration(h)]</property>
-            <property name="Duration_M">$INFO[Container($PARAM[id]).ListItem.Duration(mm)]</property>
-            <property name="Duration_Mins">$INFO[Container($PARAM[id]).ListItem.Duration(mins)]</property>
+            <property name="Label2">$INFO[$PARAM[listitem].Label2]</property>
+            <property name="DBType">$INFO[$PARAM[listitem].DBType]</property>
+            <property name="FolderPath">$INFO[$PARAM[listitem].FolderPath]</property>
+            <property name="MPAA">$INFO[$PARAM[listitem].MPAA]</property>
+            <property name="Year">$INFO[$PARAM[listitem].Year]</property>
+            <property name="EndTime">$INFO[$PARAM[listitem].EndTime]</property>
+            <property name="Season">$INFO[$PARAM[listitem].Season]</property>
+            <property name="Episode">$INFO[$PARAM[listitem].Episode]</property>
+            <property name="ChannelNumberLabel">$INFO[$PARAM[listitem].ChannelNumberLabel]</property>
+            <property name="ChannelName">$INFO[$PARAM[listitem].ChannelName]</property>
+            <property name="StartTime">$INFO[$PARAM[listitem].StartTime]</property>
+            <property name="NextStartTime">$INFO[$PARAM[listitem].NextStartTime]</property>
+            <property name="NextEndTime">$INFO[$PARAM[listitem].NextEndTime]</property>
+            <property name="EpisodeName">$INFO[$PARAM[listitem].EpisodeName]</property>
+            <property name="EPGEventTitle">$INFO[$PARAM[listitem].EPGEventTitle]</property>
+            <property name="Title">$INFO[$PARAM[listitem].Title]</property>
+            <property name="Plot">$INFO[$PARAM[listitem].Plot]</property>
+            <property name="TvShowTitle">$INFO[$PARAM[listitem].TvShowTitle]</property>
+            <property name="AddonVersion">$INFO[$PARAM[listitem].Property(AddonVersion)]</property>
+            <property name="AddonType">$INFO[$PARAM[listitem].Property(AddonType)]</property>
+            <property name="AddonCreator">$INFO[$PARAM[listitem].Property(AddonCreator)]</property>
+            <property name="AlbumArtist">$INFO[$PARAM[listitem].AlbumArtist]</property>
+            <property name="Album_Label">$INFO[$PARAM[listitem].Property(Album_Label)]</property>
+            <property name="Artist_Genre">$INFO[$PARAM[listitem].Property(Artist_Genre)]</property>
+            <property name="Artist_YearsActive">$INFO[$PARAM[listitem].Property(Artist_YearsActive)]</property>
+            <property name="Artist_Born">$INFO[$PARAM[listitem].Property(Artist_Born)]</property>
+            <property name="WatchedEpisodes">$INFO[$PARAM[listitem].Property(WatchedEpisodes)]</property>
+            <property name="TotalEpisodes">$INFO[$PARAM[listitem].Property(TotalEpisodes)]</property>
+            <property name="VideoResolution">$INFO[$PARAM[listitem].VideoResolution]</property>
+            <property name="IsCollection">$INFO[$PARAM[listitem].IsCollection]</property>
+            <property name="Duration_H">$INFO[$PARAM[listitem].Duration(h)]</property>
+            <property name="Duration_M">$INFO[$PARAM[listitem].Duration(mm)]</property>
+            <property name="Duration_Mins">$INFO[$PARAM[listitem].Duration(mins)]</property>
             <nested />
         </item>
     </include>
@@ -865,7 +866,7 @@
 
     <include name="Object_DefaultIcon">
         <param name="icon" default="$INFO[ListItem.Icon]" />
-        <param name="visible" default="String.StartsWith(ListItem.Icon,Default)" />
+        <param name="visible" default="$EXP[Exp_DefaultIcon]" />
         <param name="fallback" default="$INFO[ListItem.Icon]" />
         <definition>
             <control type="image">
@@ -882,7 +883,7 @@
     <include name="Object_Poster">
         <param name="icon" default="$VAR[Image_Poster]" />
         <param name="aspectratio" default="scale" />
-        <param name="visible" default="!String.StartsWith(ListItem.Icon,Default)" />
+        <param name="visible" default="!$EXP[Exp_DefaultIcon]" />
         <param name="bordersize" default="15" />
         <param name="fadetime" default="0" />
         <param name="background" default="true" />
@@ -906,7 +907,7 @@
                 <param name="diffuse" value="$PARAM[diffuse]" />
                 <param name="aspectratio" value="keep" />
                 <param name="bordersize" value="25" />
-                <param name="visible" value="String.StartsWith(ListItem.Icon,Default) | String.StartsWith(ListItem.Icon,special://skin/extras/icons/)" />
+                <param name="visible" value="$EXP[Exp_DefaultIcon]"/>
             </include>
             <include content="Object_Poster">
                 <param name="icon" value="$VAR[Image_DefaultIcon]" />
@@ -914,14 +915,14 @@
                 <param name="diffuse" value="$PARAM[diffuse]" />
                 <param name="aspectratio" value="keep" />
                 <param name="bordersize" value="40" />
-                <param name="visible" value="!String.StartsWith(ListItem.Icon,Default) + !String.StartsWith(ListItem.Icon,special://skin/extras/icons/) + [String.StartsWith(ListItem.FolderPath,pvr://) | String.IsEqual(ListItem.DBType,country) | String.IsEqual(ListItem.Property(dbtype),country) | String.IsEqual(ListItem.DBType,studio) | String.IsEqual(ListItem.Property(dbtype),studio) | String.IsEqual(ListItem.DBType,genre) | String.IsEqual(ListItem.Property(dbtype),genre)]" />
+                <param name="visible" value="!$EXP[Exp_DefaultIcon] + [!String.IsEmpty(ListItem.ChannelNumberLabel) | !String.IsEmpty(ListITem.ChannelName) | !String.IsEmpty(ListITem.ChannelNumber) | String.IsEqual(ListItem.DBType,country) | String.IsEqual(ListItem.Property(dbtype),country) | String.IsEqual(ListItem.DBType,studio) | String.IsEqual(ListItem.Property(dbtype),studio) | String.IsEqual(ListItem.DBType,genre) | String.IsEqual(ListItem.Property(dbtype),genre)]" />
             </include>
             <include content="Object_Poster">
                 <param name="icon" value="$PARAM[icon]" />
                 <param name="diffuse" value="$PARAM[diffuse]" />
                 <param name="aspectratio" value="$PARAM[aspectratio]" />
                 <param name="bordersize" value="$PARAM[bordersize]" />
-                <param name="visible" value="!String.StartsWith(ListItem.Icon,Default) + !String.StartsWith(ListItem.Icon,special://skin/extras/icons/) + !String.StartsWith(ListItem.FolderPath,pvr://) + !String.IsEqual(ListItem.DBType,country) + !String.IsEqual(ListItem.Property(dbtype),country) + !String.IsEqual(ListItem.DBType,studio) + !String.IsEqual(ListItem.Property(dbtype),studio) + !String.IsEqual(ListItem.DBType,genre) + !String.IsEqual(ListItem.Property(dbtype),genre)" />
+                <param name="visible" value="!$EXP[Exp_DefaultIcon] + [String.IsEmpty(ListItem.ChannelNumberLabel) + String.IsEmpty(ListITem.ChannelName) + String.IsEmpty(ListITem.ChannelNumber) + !String.IsEqual(ListItem.DBType,country) + !String.IsEqual(ListItem.Property(dbtype),country) + !String.IsEqual(ListItem.DBType,studio) + !String.IsEqual(ListItem.Property(dbtype),studio) + !String.IsEqual(ListItem.DBType,genre) + !String.IsEqual(ListItem.Property(dbtype),genre)]" />
             </include>
         </definition>
     </include>
@@ -1935,36 +1936,6 @@
         </control>
     </include>
 
-    <include name="Object_Info_Arrows">
-        <param name="id" default="9000" />
-        <param name="artworkid" default="6000" />
-        <definition>
-            <!-- <control type="group">
-                <top>-35</top>
-                <include>Animation_FadeIn_Delay</include>
-                <include>Animation_FadeOut</include>
-                <visible>!Control.HasFocus(8101)</visible>
-                <visible>!Control.HasFocus($PARAM[artworkid])</visible>
-                <visible>Container($PARAM[id]).HasPrevious</visible>
-                <include content="Object_DoubleArrow_Up">
-                    <param name="colordiffuse" value="main_fg_30" />
-                </include>
-            </control>
-            <control type="group">
-                <bottom>24</bottom>
-                <include>Animation_FadeIn_Delay</include>
-                <include>Animation_FadeOut</include>
-                <visible>!Control.HasFocus(8101)</visible>
-                <visible>!ControlGroup(300).HasFocus() | !Skin.HasSetting(EnableLanguages)</visible>
-                <visible>!Control.HasFocus($PARAM[artworkid])</visible>
-                <visible>Container($PARAM[id]).HasNext</visible>
-                <include content="Object_DoubleArrow_Down">
-                    <param name="colordiffuse" value="main_fg_30" />
-                </include>
-            </control> -->
-        </definition>
-    </include>
-
     <include name="Object_DoubleArrow_Up">
         <param name="colordiffuse" default="main_fg_100" />
         <definition>
@@ -2070,13 +2041,6 @@
                                         <onback condition="Control.IsVisible(3000)">3000</onback>
                                         <onback condition="!Control.IsVisible(3000) + Control.IsVisible(300)">300</onback>
                                         <onback condition="!Control.IsVisible(3000) + !Control.IsVisible(300)">50</onback>
-                                        <ondown condition="Control.IsVisible(3000)">3000</ondown>
-                                        <ondown condition="!Control.IsVisible(3000) + Control.IsVisible(300)">300</ondown>
-                                        <ondown condition="!Control.IsVisible(3000) + !Control.IsVisible(300)">50</ondown>
-                                        <!-- <ondown>ActivateWindow(1143)</ondown> -->
-                                        <onup condition="Control.IsVisible(3000)">3000</onup>
-                                        <onup condition="!Control.IsVisible(3000) + Control.IsVisible(300)">300</onup>
-                                        <onup condition="!Control.IsVisible(3000) + !Control.IsVisible(300)">50</onup>
                                         <onleft condition="Control.IsVisible(3000)">3000</onleft>
                                         <onleft condition="!Control.IsVisible(3000) + Control.IsVisible(300)">300</onleft>
                                         <onleft condition="!Control.IsVisible(3000) + !Control.IsVisible(300)">50</onleft>
@@ -2084,7 +2048,6 @@
                                         <onright condition="!Control.IsVisible(9604) + Control.IsVisible(3000)">3000</onright>
                                         <onright condition="!Control.IsVisible(9604) + !Control.IsVisible(3000) + Control.IsVisible(300)">300</onright>
                                         <onright condition="!Control.IsVisible(9604) + !Control.IsVisible(3000) + !Control.IsVisible(300)">50</onright>
-                                        <!-- <onright>SetFocus(9604,0,absolute)</onright> -->
                                         <top>100</top>
                                         <left>-1000</left>
                                         <bottom>200</bottom>

@@ -235,6 +235,36 @@ msgctxt "#31044"
 msgid "Display clock in top right"
 msgstr ""
 
+#: /shortcuts/overrides.xml
+msgctxt "#31045"
+msgid "Trending Lists"
+msgstr ""
+
+#: /shortcuts/overrides.xml
+msgctxt "#31046"
+msgid "Next Aired"
+msgstr ""
+
+#: /shortcuts/overrides.xml
+msgctxt "#31047"
+msgid "Next Aired (Trakt)"
+msgstr ""
+
+#: /shortcuts/overrides.xml
+msgctxt "#31048"
+msgid "Next Aired (Library)"
+msgstr ""
+
+#: /1080i/script-skinshortcuts.xml
+msgctxt "#31049"
+msgid "Customise"
+msgstr ""
+
+#: /1080i/script-skinshortcuts.xml
+msgctxt "#31050"
+msgid "Widget"
+msgstr ""
+
 #: /1080i/DialogVideoInfo.xml
 msgctxt "#31051"
 msgid "Similar to"
@@ -243,6 +273,16 @@ msgstr ""
 #: /1080i/DialogVideoInfo.xml
 msgctxt "#31052"
 msgid "By Director"
+msgstr ""
+
+#: /1080i/script-skinshortcuts.xml
+msgctxt "#31053"
+msgid "Choose hub widget"
+msgstr ""
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31054"
+msgid "Hide channel name if icon is available"
 msgstr ""
 
 #: /1080i/DialogVideoInfo.xml
